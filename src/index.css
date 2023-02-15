@@ -6,3 +6,9 @@
 * {
   font-family: "Lato", sans-serif;
 }
+
+
+.ant-input {
+  background-color: inherit;
+  color: white;
+}
