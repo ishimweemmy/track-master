@@ -7,8 +7,12 @@
   font-family: "Lato", sans-serif;
 }
 
+@layer components {
+  .button {
+    @apply w-[49%] py-4  text-white bg-red rounded-lg text-sm font-medium transition duration-300;
+  }
 
-.ant-input {
-  background-color: inherit;
-  color: white;
+  .buttonOutline {
+    @apply w-[49%] py-4 bg-transparent text-red border border-red rounded-lg text-sm font-medium transition duration-300;
+  }
 }
