@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   const [sidebarIconsData, setSideBarIconsData] = useState([
@@ -47,7 +47,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="w-screen h-full overflow-hidden bg-primary">
+    <div className="w-screen h-full overflow-hidden bg-primary flex">
       <div className="w-[18%] h-full flex flex-col items-center justify-between py-8 border-r border-r-gray-400">
         <img src="/logo.svg" className="z-10" height={10} width={70} alt="" />
         <div className="w-full h-fit flex flex-col gap-8 items-center justify-center">
@@ -85,6 +85,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 };

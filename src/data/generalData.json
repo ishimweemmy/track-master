@@ -1,0 +1,20 @@
+[
+    {
+        "imgSrc": "monitor-mobbile",
+        "label": "Devices",
+        "value": 590,
+        "statusValue": -6
+    },
+    {
+        "imgSrc": "global-search",
+        "label": "Countries",
+        "value": 340,
+        "statusValue": 4
+    },
+    {
+        "imgSrc": "mouse-circle",
+        "label": "Clicks",
+        "value": 8000,
+        "statusValue": 5
+    }
+]

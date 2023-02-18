@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,4 +16,22 @@
   .buttonOutline {
     @apply w-[49%] py-4 bg-transparent text-red border border-red rounded-lg text-sm font-medium transition duration-300;
   }
+}
+
+table {
+  font-family: "Poppins", sans-serif;
+}
+
+.Mytable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.Mytable::-webkit-scrollbar-track {
+  background: #141414;
+  border-radius: 20px;
+}
+
+.Mytable::-webkit-scrollbar-thumb {
+  background: #DB1D60;
+  border-radius: 20px;
 }
