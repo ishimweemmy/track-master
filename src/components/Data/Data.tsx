@@ -194,9 +194,9 @@ const Data = () => {
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
           />
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

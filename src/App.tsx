@@ -4,7 +4,7 @@ import Login from "./pages/auth/Login";
 import Settings from "./components/settings/Settings";
 import Home from "./components/Home/Home";
 import Data from "./components/Data/Data";
-import Resources from "./components/Resources";
+import Resources from "./components/Resources/Resources";
 import Credits from "./components/credits/Credits";
 import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/Dashboard";
@@ -20,7 +20,7 @@ const theme = createTheme({
     MuiDatePicker: {
       styleOverrides: {
         root: {
-          backgroundColor: 'red',
+          backgroundColor: '#0000',
         },
       },
     },
