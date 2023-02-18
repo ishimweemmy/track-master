@@ -10,6 +10,8 @@ module.exports = {
         "gray-300": "#ffffff69",
         "gray-400": "#ffffff2f",
         gray: "#1F1F1F",
+        lightRed: "#ff00006c",
+        checked: "#17AF62"
       },
     },
   },

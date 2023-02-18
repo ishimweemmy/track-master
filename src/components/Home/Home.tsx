@@ -65,6 +65,9 @@ const Home = () => {
           <span className="text-3xl font-bold text-white tracking-wider">
             Users dispersion
           </span>
+          <div className="w-full h-full">
+            
+          </div>
         </div>
       </div>
     </div>

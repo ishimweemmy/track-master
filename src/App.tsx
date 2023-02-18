@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/auth/Login";
-import Settings from "./components/Settings";
+import Settings from "./components/settings/Settings";
 import Home from "./components/Home/Home";
 import Data from "./components/Data/Data";
 import Resources from "./components/Resources";
-import Credits from "./components/Credits";
+import Credits from "./components/credits/Credits";
 import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/Dashboard";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { } from '@mui/x-date-pickers/themeAugmentation';
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { ReactNode } from "react";
+import type { FC } from 'react'
 
 const theme = createTheme({
   components: {
+    MuiDatePicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'red',
+        },
+      },
+    },
     MuiFilledInput: {
       styleOverrides: {
         root: {
@@ -97,23 +109,25 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div className="w-screen h-screen">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route path="" element={<Home />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="data" element={<Data />} />
-              <Route path="resources" element={<Resources />} />
-              <Route path="Credits" element={<Credits />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterMoment} >
+      <ThemeProvider theme={theme}>
+        <div className="w-screen h-screen">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="" element={<Home />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="data" element={<Data />} />
+                <Route path="resources" element={<Resources />} />
+                <Route path="Credits" element={<Credits />} />
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ThemeProvider>
+    </LocalizationProvider>
   );
 }
 

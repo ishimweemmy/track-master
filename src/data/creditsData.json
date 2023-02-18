@@ -1,0 +1,12 @@
+[
+  {
+    "imgSrc": "card-pos",
+    "label": "Balance",
+    "value": 25
+  },
+  {
+    "imgSrc": "gift",
+    "label": "Bonus",
+    "value": 5.3
+  }
+]
