@@ -14,6 +14,7 @@ import {
 import { overallVisits } from "../../data";
 import LongTableRow from "./LongTableRow";
 import { ChangeEvent, useEffect, useState } from "react";
+import CustomizedPagination from "./CustomPagination";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -48,10 +49,18 @@ const Data = () => {
     } = event;
     setCountry(typeof value === "string" ? value.split(",") : value);
   };
-  const [page, setPage] = useState(0);
-  const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageCount = 10;
+
+  const handlePrevClick = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
   };
+
+  const handleNextClick = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
 
   return (
     <div className="w-[80%] h-fit flex flex-col items-center gap-8 px-3">
@@ -70,14 +79,16 @@ const Data = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-col gap-4 bg-gray p-5 rounded-xl">
+      <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl">
         <span className="text-white text-3xl font-bold">
           Visitors: 5630 users
         </span>
         <div className="w-full h-full flex flex-col justify-start gap-2">
           <span className="text-white font-bold text-sm">Search</span>
           <div className="w-full flex items-center justify-center gap-4">
-            <TextField label="Search IP adress, ISP..." fullWidth />
+            <TextField label="Search IP adress, ISP..." InputLabelProps={{
+              style: { color: 'white' }
+            }} fullWidth />
             <FormControl fullWidth>
               <InputLabel>All Countries</InputLabel>
               <Select
@@ -178,14 +189,10 @@ const Data = () => {
           </div>
         </div>
         <div className="w-full flex justify-end">
-          <Pagination
-            count={10}
-            siblingCount={0}
-            defaultPage={1}
-            page={page}
-            onChange={handlePageChange}
-            color="primary"
-            className="z-50"
+          <CustomizedPagination
+            count={pageCount}
+            onNextClick={handleNextClick}
+            onPrevClick={handlePrevClick}
           />
         </div>
       </div>

@@ -61,7 +61,11 @@ const Home = () => {
             })}
           </div>
         </div>
-        <div className="h-full w-[33%] max-h-[26rem] rounded-2xl p-5 flex flex-col justify-center items-start gap-4 bg-gray"></div>
+        <div className="h-full w-[33%] max-h-[26rem] rounded-2xl p-5 flex flex-col justify-center items-start gap-4 bg-gray">
+          <span className="text-3xl font-bold text-white tracking-wider">
+            Users dispersion
+          </span>
+        </div>
       </div>
     </div>
   );
