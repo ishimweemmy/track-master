@@ -11,7 +11,7 @@ const Login = () => {
   return (
     <div className="w-screen h-screen bg-primary flex overflow-hidden">
       <div
-        className="w-full h-full bg-cover relative flex flex-col justify-center items-start gap-[15rem] py-[2rem] "
+        className="w-full h-full bg-cover relative flex flex-col justify-between items-start md:hidden"
         style={{
           backgroundImage: `url("/loginBg.png")`,
           backgroundPosition: "center",
@@ -20,13 +20,13 @@ const Login = () => {
         <div className="w-full h-full backdrop-blur-xl bg-[#000000b5] absolute"></div>
         <img
           src="logo.svg"
-          className="z-10 ml-[2rem]"
+          className="z-10 ml-[2rem] mt-8"
           height={10}
           width={80}
           alt=""
         />
-        <div className="relative w-[80%] h-fit flex flex-col justify-start px-[2rem] gap-[4rem]">
-          <h1 className=" text-7xl text-white font-bold flex flex-col gap-2">
+        <div className="relative w-[80%] h-fit flex flex-col justify-start pl-[2rem] gap-[4rem]">
+          <h1 className="w-full text-7xl text-white font-bold flex flex-col gap-2">
             <span>This is a test </span>
             <span>piece that helps </span>
             <span>designers and devs</span>
@@ -37,7 +37,7 @@ const Login = () => {
             <div className="w-full rounded-full bg-red"></div>
           </div>
         </div>
-        <div className="w-full h-fit flex z-10 justify-start gap-[5rem] pl-[5rem]">
+        <div className="w-full h-fit flex z-10 justify-start gap-[5rem] pl-[5rem] mb-8">
           {["Home", "About", "Contact Us", "Terms & Conditions"].map((item) => {
             return (
               <Link
@@ -104,7 +104,7 @@ const Login = () => {
             fullWidth
           />
         </div>
-        <div className="w-[48%] h-[1rem] flex justify-between">
+        <div className="w-[48%] h-[1rem] flex justify-between md:w-[50%]">
           <FormControlLabel
             control={
               <Checkbox

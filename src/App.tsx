@@ -12,8 +12,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { } from '@mui/x-date-pickers/themeAugmentation';
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { ReactNode } from "react";
-import type { FC } from 'react'
 
 const theme = createTheme({
   components: {

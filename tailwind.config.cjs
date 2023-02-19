@@ -11,7 +11,15 @@ module.exports = {
         "gray-400": "#ffffff2f",
         gray: "#1F1F1F",
         lightRed: "#ff00006c",
-        checked: "#17AF62"
+        checked: "#17AF62",
+      },
+      screens: {
+        xs: {max: "320px"}, 
+        sm: { max: "639px" },
+        md: { max: "767px" },
+        lg: { max: "1023px" },
+        xl: { max: "1279px" },
+        "2xl": { max: "1535px" },
       },
     },
   },

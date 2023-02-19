@@ -39,3 +39,8 @@ table {
 .resources::-webkit-scrollbar {
   display: none;
 }
+
+.map-container {
+  width: 100%;
+  height: 30rem;
+}
