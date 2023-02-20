@@ -31,7 +31,9 @@ const DispersionMap = () => {
           position={{ lat: 36.6163, lng: -100.61 }}
           onClick={() => console.log("Marker clicked")}
           options={{
-            icon: "https://storage.cloud.google.com/track-master/public/bulk/marker.png",
+            icon:
+              import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
+              "public/bulk/marker.png",
           }}
         />
       </GoogleMap>
