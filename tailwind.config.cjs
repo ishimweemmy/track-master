@@ -22,6 +22,7 @@ module.exports = {
         lPhone: { max: "700px" },
         md: { max: "767px" },
         lMd: { max: "870px" },
+        ipr1: { max: "900px" },
         ipr: { max: "913px" },
         lMd2: { max: "980px" },
         datar: {max: "1000px"},
