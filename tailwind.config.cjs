@@ -16,7 +16,6 @@ module.exports = {
       screens: {
         xs: { max: "320px" },
         xss: { max: "400px" },
-        ssm1: { max: "500px" },
         ssm: { max: "600px" },
         sm: { max: "639px" },
         md: { max: "767px" },
@@ -36,6 +35,7 @@ module.exports = {
         xsPhone: { max: "730px" },
         lPhone: { max: "700px" },
         table: { max: "1430px" },
+        ssm1: { max: "500px" },
         sidebar: { max: "1500px" },
         "2xl": { max: "1535px" },
         datar: { max: "1000px" },

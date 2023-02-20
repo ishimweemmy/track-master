@@ -44,9 +44,10 @@ const Resources = () => {
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 max-h-screen overflow-y-auto lPhone:w-full ">
       <div className="w-full flex items-center justify-between py-4 mt-8">
-        <span className="text-white text-5xl font-bold">Resources</span>
+        <img src={`/logo.svg`} className="w-[3rem] h-[3rem] " alt="" />
+
         <div className="w-fit h-full flex gap-5">
-          <div className="w-fit h-14 p-3 rounded-xl border-gray-400">
+          <div className="w-fit h-14 p-3 rounded-xl gray-400">
             <img
               src={`/bulk/notification.svg`}
               className="w-full h-full "
@@ -58,10 +59,13 @@ const Resources = () => {
           </div>
         </div>
       </div>
+      <span className="w-full text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl ">
+        Resources
+      </span>
 
       <div className="w-full h-full flex flex-col justify-start gap-8 bg-gray rounded-xl p-8  ">
-        <span className="text-white text-3xl font-bold">Articles</span>
-        <div className="w-full grid grid-cols-4 gap-8 lTable:grid-cols-2 xsPhone:grid-cols-1 lPhone:grid-cols-2 ">
+        <span className="text-white text-3xl font-bold xss:text-2xl">Articles</span>
+        <div className="w-full grid grid-cols-4 gap-8 lTable:grid-cols-2 xsPhone:grid-cols-1 lPhone:grid-cols-2 ssm1:grid-cols-1 ">
           {articlesData.map((data) => {
             const { title, description, publish_date, imgSrc } = data;
             return (
@@ -78,7 +82,7 @@ const Resources = () => {
 
       <div className="w-full h-full flex flex-col justify-start gap-8 bg-gray rounded-xl p-8  ">
         <span className="text-white text-3xl font-bold">Guide</span>
-        <div className="w-full grid grid-cols-4 gap-8 lTable:grid-cols-2 xsPhone:grid-cols-1 lPhone:grid-cols-2">
+        <div className="w-full grid grid-cols-4 gap-8 lTable:grid-cols-2 xsPhone:grid-cols-1 lPhone:grid-cols-2 ssm1:grid-cols-1">
           {guidesData.map((data) => {
             const { title, description, label } = data;
             return (
