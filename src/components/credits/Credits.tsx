@@ -2,6 +2,7 @@ import { creditsData, transactionsData } from "../../data";
 import HeadMaker from "../Global/HeadMaker";
 import Calendar from "./Calendar";
 import Ccard from "./Ccard";
+import CreditSm from "./CreditSm";
 import CTableRow from "./CTableRow";
 import TransactionsInput from "./TransactionsInput";
 
@@ -57,7 +58,7 @@ const Credits = () => {
           <span className="text-3xl font-bold text-white tracking-wider">
             Invoices
           </span>
-          <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] bg-primary text-white text-lg py-4 gap-2 rounded-lg lgXl:grid-cols-[5%_23%_20%_15%_15%_15%]">
+          <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] bg-primary text-white text-lg py-4 gap-2 rounded-lg lgXl:grid-cols-[5%_23%_20%_15%_15%_15%] lMd2:hidden">
             <span className="w-full text-center">#</span>
             <span className="w-full text-start ">Date</span>
             <span className="w-full text-start">Invoice NO</span>
@@ -65,11 +66,11 @@ const Credits = () => {
             <span className="w-full text-start pl-[1.5rem] ">Status</span>
             <span className="w-full text-start pl-[1.5rem] ">_______</span>
           </div>
-          <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins]">
+          <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
             {transactionsData.map((data) => {
               const { id, date, invoiceNo, amount, paid } = data;
               return (
-                <CTableRow
+                <CreditSm
                   key={id}
                   id={id}
                   invoiceNo={invoiceNo}
