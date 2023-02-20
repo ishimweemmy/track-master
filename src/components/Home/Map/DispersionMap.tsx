@@ -1,7 +1,6 @@
-import Icon from "react-icons";
-import { GoogleMap, useLoadScript, Marker, InfoBox } from "@react-google-maps/api";
-import CustomMarker from "./CustomMarker";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import mapStyles from "./styles";
+import CustomMarker from "https://storage.cloud.google.com/track-master/public/bulk/marker.png";
 
 const DispersionMap = () => {
   const mapsApiUrl = import.meta.env.VITE_API_URL
@@ -28,13 +27,10 @@ const DispersionMap = () => {
 
       >
         <Marker
-          position={{ lat: 37.7749, lng: -122.4194 }}
+          position={{ lat: 36.6163, lng: -100.61 }}
           onClick={() => console.log('Marker clicked')}
-        >
-          <InfoBox>
-            <CustomMarker />
-          </InfoBox>
-        </Marker>
+          options={{icon: CustomMarker}}
+        />
       </GoogleMap>
     </div>
   )
