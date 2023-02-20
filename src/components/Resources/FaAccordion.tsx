@@ -22,16 +22,17 @@ const FacAccordion: FC<AccordionProps> = (props) => {
                     cursor: `none`,
                     boxShadow: `none`,
                     borderRadius: 0,
-                    backgroundColor: "#1F1F1F"
+                    backgroundColor: "#1F1F1F",
+                    padding: "1rem"
                 }}
                 className={`w-full pb-1 shadow-none border-none miniTablet:pb-[2rem] miniTablet:pt-[2rem] rounded-2xl bg-gray-300 ${panel == "panel1" && "border-t"}`}
             >
                 <AccordionSummary
                     expandIcon={
                         expanded ? (
-                            <img src="/bulk/arrow-up.svg" />
+                            <img src="/bulk/arrow-up.svg" className="w-12 h-12 " />
                         ) : (
-                            <img src="/bulk/arrow-bottom.svg" />
+                            <img src="/bulk/arrow-bottom.svg" className="w-12 h-12 " />
                         )
                     }
                     aria-controls="panel1a-content"
