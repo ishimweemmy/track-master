@@ -74,7 +74,8 @@ const Data = () => {
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-3 lTable:pr-0 lTable:w-full datar:overflow-auto datar:max-h-full">
       <div className="w-full flex items-center justify-between py-4 mt-8">
-        <span className="text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">Data</span>
+        <img src={`/logo.svg`} className="w-[4rem] h-[4rem] " alt="" />
+
         <div className="w-fit h-full flex gap-5">
           <div className="w-fit h-14 p-3 rounded-xl gray-400">
             <img
@@ -88,7 +89,11 @@ const Data = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl lTable:pr-2 ">
+      <span className="w-full text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">
+        Data
+      </span>
+
+      <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl lTable:pr-2 datar:w-[95%] datar:mr-4">
         <span className="text-white text-3xl font-bold lMd2:text-2xl">
           Visitors: 5630 users
         </span>
@@ -212,7 +217,7 @@ const Data = () => {
             })}
           </div>
         </div>
-        <hr className="w-full h-1 bg-gray-400"/>
+        <hr className="w-full h-1 bg-gray-400" />
         <div className="w-full h-full hidden datar:grid datar:place-items-center ">
           <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start datar:hidden">
             Today Visits

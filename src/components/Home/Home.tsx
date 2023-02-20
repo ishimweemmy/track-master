@@ -8,9 +8,7 @@ const Home = () => {
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <div className="w-full flex items-center justify-between py-4 mt-8">
-        <span className="text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">
-          Dashboard
-        </span>
+        <img src={`/logo.svg`} className="w-[4rem] h-[4rem] " alt="" />
         <div className="w-fit h-full flex gap-5">
           <div className="w-fit h-14 p-3 rounded-xl gray-400">
             <img
@@ -24,6 +22,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <span className="text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">
+        Dashboard
+      </span>
       <div className="w-full h-fit flex justify-between gap-8">
         {generalData.map((item, index) => {
           const { imgSrc, label, value, statusValue } = item;
