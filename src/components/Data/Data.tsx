@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   FormControl,
   InputAdornment,
@@ -15,6 +16,7 @@ import { overallVisits } from "../../data";
 import LongTableRow from "./LongTableRow";
 import { ChangeEvent, useEffect, useState } from "react";
 import CustomizedPagination from "./CustomPagination";
+import LCardSm from "./LCardSm";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -61,11 +63,18 @@ const Data = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  const [lgScroll, setLgScroll] = useState(window.innerWidth <= 1350);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setLgScroll(window.innerWidth <= 1350);
+    });
+  }, [lgScroll]);
 
   return (
-    <div className="w-[80%] h-fit flex flex-col items-center gap-8 px-3">
+    <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-3 lTable:pr-0 lTable:w-full datar:overflow-auto datar:max-h-full">
       <div className="w-full flex items-center justify-between py-4 mt-8">
-        <span className="text-white text-5xl font-bold">Data</span>
+        <span className="text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">Data</span>
         <div className="w-fit h-full flex gap-5">
           <div className="w-fit h-14 p-3 rounded-xl gray-400">
             <img
@@ -79,17 +88,22 @@ const Data = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl">
-        <span className="text-white text-3xl font-bold">
+      <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl lTable:pr-2 ">
+        <span className="text-white text-3xl font-bold lMd2:text-2xl">
           Visitors: 5630 users
         </span>
-        <div className="w-full h-full flex flex-col justify-start gap-2">
+        <div className="w-full h-full flex flex-col justify-start gap-2 ">
           <span className="text-white font-bold text-sm">Search</span>
-          <div className="w-full flex items-center justify-center gap-4">
-            <TextField label="Search IP adress, ISP..." InputLabelProps={{
-              style: { color: 'white' }
-            }} fullWidth />
-            <FormControl fullWidth>
+          <div className="w-full flex items-center justify-center gap-4 tableLr:grid tableLr:grid-cols-2">
+            <TextField
+              label="Search IP adress, ISP..."
+              InputLabelProps={{
+                style: { color: "white" },
+              }}
+              fullWidth
+              className="col-span-2"
+            />
+            <FormControl fullWidth className="col-span-2">
               <InputLabel>All Countries</InputLabel>
               <Select
                 multiple
@@ -112,7 +126,7 @@ const Data = () => {
                 ))}
               </Select>
             </FormControl>
-            <FormControl fullWidth>
+            <FormControl fullWidth className="col-span-2">
               <InputLabel>All Times</InputLabel>
               <Select
                 multiple
@@ -132,34 +146,44 @@ const Data = () => {
                 ))}
               </Select>
             </FormControl>
-            <FormControl className="w-[50%]">
-              <OutlinedInput
-                startAdornment={
-                  <InputAdornment position="start">
-                    <img src="/bulk/trash.svg" />
-                  </InputAdornment>
-                }
-                placeholder="Clear"
-              />
+            <FormControl className="w-[50%] tableLr:w-full">
+              <button className="buttonOutline border-white text-white gap-2 w-full hover:w-full flex items-center justify-center text-base tracking-wider tableLr:w-full tableLr:hover:w-full ">
+                <img src="/bulk/trash.svg" />
+                Filter
+              </button>
             </FormControl>
-            <button className="button hover:buttonOutline w-[60%] hover:w-[60%] flex items-center justify-center text-base tracking-wider ">
+            <button className="button hover:buttonOutline w-[60%] hover:w-[60%] flex items-center justify-center text-base tracking-wider tableLr:w-full tableLr:hover:w-full ">
               <img src="/bulk/filter.svg" alt="" />
               Filter
             </button>
           </div>
         </div>
-        <div className="w-full h-full rounded-2xl flex flex-col justify-center items-start gap-4 bg-gray">
-          <div className="w-full grid grid-cols-[5%_28%_8%_15%_10%_10%_10%_10%] bg-primary text-white text-lg py-4 gap-2 rounded-lg">
+        <div className="w-full h-full rounded-2xl flex flex-col justify-center items-start gap-4 bg-gray datar:hidden">
+          <div className="w-full grid grid-cols-[5%_28%_8%_15%_10%_10%_10%_10%] bg-primary text-white text-lg py-4 gap-2 rounded-lg xlt:grid-cols-[3%_20%_10%_14%_12%_13%_13%_11%]">
             <span className="w-full text-center">#</span>
-            <span className="w-full text-start ">Ip Adress</span>
-            <span className="w-full text-start">Country</span>
-            <span className="w-full text-start pl-[3rem] ">ISP</span>
-            <span className="w-full text-start ">Domain Used</span>
-            <span className="w-full text-start ">Owner</span>
-            <span className="w-full text-start ">ISP Domain</span>
-            <span className="w-full text-start pl-[1.5rem] ">Time</span>
+            <span className="w-full text-start lTable:text-base  ">
+              Ip Adress
+            </span>
+            <span className="w-full text-start lTable:text-base">Country</span>
+            <span className="w-full text-start pl-[3rem] lTable:text-base ">
+              ISP
+            </span>
+            <span className="w-full text-start whitespace-nowrap lTable:text-base ">
+              Domain Used
+            </span>
+            <span className="w-full text-start lTable:text-base ">Owner</span>
+            <span className="w-full text-start 2xl:whitespace-nowrap lTable:text-base ">
+              ISP Domain
+            </span>
+            <span className="w-full text-start pl-[1.5rem] lTable:text-base xlt:pl-0 ">
+              Time
+            </span>
           </div>
-          <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins]">
+          <div
+            className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${
+              lgScroll && "resources"
+            } `}
+          >
             {overallVisits.map((data) => {
               const {
                 id,
@@ -188,15 +212,48 @@ const Data = () => {
             })}
           </div>
         </div>
+        <hr className="w-full h-1 bg-gray-400"/>
+        <div className="w-full h-full hidden datar:grid datar:place-items-center ">
+          <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start datar:hidden">
+            Today Visits
+          </span>
+          {overallVisits.map((data, index) => {
+            const {
+              id,
+              ipAdress,
+              country,
+              cflag,
+              domain,
+              time,
+              isp,
+              ispDomain,
+              owner,
+            } = data;
+            return (
+              <LCardSm
+                id={id}
+                country={country}
+                cflag={cflag}
+                domain={domain}
+                time={time}
+                ipAdress={ipAdress}
+                key={index}
+                isp={isp}
+                ispDomain={ispDomain}
+                owner={owner}
+              />
+            );
+          })}
+        </div>
         <div className="w-full flex justify-end">
           <CustomizedPagination
             count={pageCount}
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
           />
-          </div>
         </div>
       </div>
+    </div>
   );
 };
 

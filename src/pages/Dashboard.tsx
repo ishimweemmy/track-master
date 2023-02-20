@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
 const Dashboard = () => {
   const [sidebarIconsData, setSideBarIconsData] = useState([
@@ -46,6 +46,9 @@ const Dashboard = () => {
     });
   };
 
+  const location = useLocation();
+  useEffect(() => {}, [location]);
+
   return (
     <div className="w-screen h-full overflow-hidden bg-primary flex">
       <div className="w-[18%] h-full flex flex-col items-center justify-between py-8 border-r border-r-gray-400 lMd2:w-[28%] lPhone:hidden">
@@ -61,7 +64,7 @@ const Dashboard = () => {
                 onClick={() => handleLableActiveness(item.label)}
                 key={index}
               >
-                <div className="w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ">
+                <div className={`w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ${location.pathname =="/dashboard/data" && "w-[90%] tableLr:text-sm"}`}>
                   <img
                     src={`/bulk/${item.icon}.svg`}
                     className="w-8 h-8"

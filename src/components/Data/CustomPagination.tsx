@@ -68,7 +68,6 @@ function CustomizedPagination({ count, onNextClick, onPrevClick }: CustomizedPag
       }}
       onChange={onNextClick}
       renderItem={(item) => {
-        console.log(item.type)
         switch (item.type) {
           case 'previous':
             return (
