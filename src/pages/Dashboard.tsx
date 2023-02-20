@@ -64,7 +64,12 @@ const Dashboard = () => {
                 onClick={() => handleLableActiveness(item.label)}
                 key={index}
               >
-                <div className={`w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ${location.pathname =="/dashboard/data" && "w-[90%] tableLr:text-sm"}`}>
+                <div
+                  className={`w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ${
+                    location.pathname == "/dashboard/data" &&
+                    "w-[90%] tableLr:text-sm"
+                  }`}
+                >
                   <img
                     src={`/bulk/${item.icon}.svg`}
                     className="w-8 h-8"

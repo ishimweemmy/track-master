@@ -14,9 +14,10 @@ import {
 } from "@mui/material";
 import { overallVisits } from "../../data";
 import LongTableRow from "./LongTableRow";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomizedPagination from "./CustomPagination";
 import LCardSm from "./LCardSm";
+import HeadMaker from "../Global/HeadMaker";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -73,25 +74,7 @@ const Data = () => {
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-3 lTable:pr-0 lTable:w-full datar:overflow-auto datar:max-h-full">
-      <div className="w-full flex items-center justify-between py-4 mt-8">
-        <img src={`/logo.svg`} className="w-[4rem] h-[4rem] " alt="" />
-
-        <div className="w-fit h-full flex gap-5">
-          <div className="w-fit h-14 p-3 rounded-xl gray-400">
-            <img
-              src={`/bulk/notification.svg`}
-              className="w-full h-full "
-              alt=""
-            />
-          </div>
-          <div className="w-16 h-14 rounded-xl gray-400 overflow-clip">
-            <img src={`/person.jpeg`} className="w-full h-full " alt="" />
-          </div>
-        </div>
-      </div>
-      <span className="w-full text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">
-        Data
-      </span>
+      <HeadMaker label="Data" />
 
       <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl lTable:pr-2 datar:w-[95%] datar:mr-4">
         <span className="text-white text-3xl font-bold lMd2:text-2xl">

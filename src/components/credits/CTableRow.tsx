@@ -14,12 +14,12 @@ const CTableRow: FC<CTableProps> = (props) => {
     const { id, date, invoiceNo, paid, amount } = props;
 
     return (
-        <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] text-white text-lg py-4 gap-2">
+        <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] text-white text-lg py-4 gap-2 lgXl:grid-cols-[5%_23%_20%_15%_15%_15%] ">
             <span className="w-full text-center">{id}</span>
-            <span className="w-full text-start ">{date}</span>
-            <span className="w-full text-start ">{invoiceNo}</span>
+            <span className="w-full text-start whitespace-nowrap ">{date}</span>
+            <span className="w-full text-start whitespace-nowrap ">{invoiceNo}</span>
             <span className="w-full text-start pl-[2rem] ">$ {amount}</span>
-            {paid ? <h1 className="w-full text-start text-checked flex items-center justify-start gap-2 ">
+            {paid ? <h1 className="w-full text-start text-checked flex items-center justify-start gap-2  ">
                 <GoCheck className="text-checked p-2 w-8 h-8 rounded-full bg-[#0080003d]" />
                 <span>paid</span>
             </h1> :

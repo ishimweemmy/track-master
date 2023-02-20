@@ -43,7 +43,7 @@ const FacAccordion: FC<AccordionProps> = (props) => {
                     </span>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <span className="text-xs font-semibold lg:text-sm mini2xl:text-base md:pr-[65%] text-gray-600">
+                    <span className="text-xs font-semibold lg:text-sm mini2xl:text-base md:pr-[65%] text-white italic">
                         {answer}
                     </span>
                 </AccordionDetails>

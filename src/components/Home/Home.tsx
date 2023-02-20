@@ -1,4 +1,5 @@
 import { generalData, totalVisitsData } from "../../data";
+import HeadMaker from "../Global/HeadMaker";
 import CardSm from "./CardSm";
 import GeneralCard from "./GeneralCard";
 import DispersionMap from "./Map/DispersionMap";
@@ -7,24 +8,8 @@ import TableRow from "./TableRow";
 const Home = () => {
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
-      <div className="w-full flex items-center justify-between py-4 mt-8">
-        <img src={`/logo.svg`} className="w-[4rem] h-[4rem] " alt="" />
-        <div className="w-fit h-full flex gap-5">
-          <div className="w-fit h-14 p-3 rounded-xl gray-400">
-            <img
-              src={`/bulk/notification.svg`}
-              className="w-full h-full "
-              alt=""
-            />
-          </div>
-          <div className="w-16 h-14 rounded-xl gray-400 overflow-clip">
-            <img src={`/person.jpeg`} className="w-full h-full " alt="" />
-          </div>
-        </div>
-      </div>
-      <span className="text-white text-5xl font-bold lMd:text-4xl lMd2:text-3xl">
-        Dashboard
-      </span>
+      <HeadMaker label="Dashboard" />
+
       <div className="w-full h-fit flex justify-between gap-8">
         {generalData.map((item, index) => {
           const { imgSrc, label, value, statusValue } = item;

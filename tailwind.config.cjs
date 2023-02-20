@@ -15,7 +15,7 @@ module.exports = {
       },
       screens: {
         xs: { max: "320px" },
-        xss: { max: "400px" },
+        xss: { max: "400px" },  
         ssm: { max: "600px" },
         sm: { max: "639px" },
         md: { max: "767px" },
