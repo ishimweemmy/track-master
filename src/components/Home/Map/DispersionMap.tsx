@@ -27,7 +27,7 @@ const DispersionMap = () => {
   if (!isLoaded)
     return (
       <img
-        src="logo.svg"
+        src="/logo.svg"
         className="z-10 ml-[2rem] mt-8"
         height={10}
         width={80}

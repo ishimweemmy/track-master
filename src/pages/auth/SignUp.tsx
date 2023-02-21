@@ -142,7 +142,7 @@ const Login = () => {
         <h1 className="w-full flex flex-col items-center relative">
           <hr className="w-[48%] border border-gray-400 ssm:w-[70%] 2lg:w-[70%]" />
           <span className="text-gray-300 absolute bg-primary px-4 -translate-y-3">
-            Or login with
+            Or Sign up with
           </span>
         </h1>
         <div className="w-full h-fit flex items-center justify-center gap-4 ssm:gap-8">
