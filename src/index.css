@@ -49,3 +49,16 @@ table {
   height: 30rem;
   border-radius: 1rem;
 }
+
+/* .MuiButtonBase-root > .PrivateSwitchBase-input {
+  color: white !important;
+  background-color: blue !important;
+} */
+.MuiButtonBase-root {
+  overflow: hidden;
+}
+
+.MuiButtonBase-root > .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium {
+  opacity: 1;
+  
+}

@@ -82,17 +82,45 @@ const Data = () => {
         </span>
         <div className="w-full h-full flex flex-col justify-start gap-2 ">
           <span className="text-white font-bold text-sm">Search</span>
-          <div className="w-full flex items-center justify-center gap-4 tableLr:grid tableLr:grid-cols-2">
+          <div className="w-full flex items-center justify-center gap-4 2mlg:grid 2mlg:grid-cols-2">
             <TextField
               label="Search IP adress, ISP..."
               InputLabelProps={{
                 style: { color: "white" },
               }}
               fullWidth
-              className="col-span-2"
+              className="tableLr:col-span-2"
             />
-            <FormControl fullWidth className="col-span-2">
-              <InputLabel>All Countries</InputLabel>
+            <FormControl fullWidth className="tableLr:col-span-2">
+              <InputLabel className="bg-gray">
+                <span className="text-white mx-2">All Countries</span>
+              </InputLabel>
+              <Select
+                multiple
+                value={country}
+                onChange={handleChange}
+                input={<OutlinedInput />}
+                renderValue={(selected) => selected.join(", ")}
+                MenuProps={MenuProps}
+              >
+                {countries?.map((cname: any) => (
+                  <MenuItem
+                    key={cname.name.official}
+                    value={cname.name.official}
+                    className="w-full flex justify-center"
+                  >
+                    <span className="w-fit text-white">{cname.flag}</span>
+                    <span className="w-fit text-black">
+                      {cname.name.official}
+                    </span>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl fullWidth className="tableLr:col-span-2">
+              <InputLabel className="bg-gray">
+                <span className="text-white mx-2">All Times</span>
+              </InputLabel>
               <Select
                 multiple
                 value={country}
@@ -106,36 +134,13 @@ const Data = () => {
                     key={cname.name.official}
                     value={cname.name.official}
                   >
-                    <Checkbox
-                      checked={country.indexOf(cname.name.official) > -1}
-                    />
                     <ListItemText primary={cname.name.official} />
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
-            <FormControl fullWidth className="col-span-2">
-              <InputLabel>All Times</InputLabel>
-              <Select
-                multiple
-                value={country}
-                onChange={handleChange}
-                input={<OutlinedInput />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {countries?.map((cname: any) => (
-                  <MenuItem
-                    key={cname.name.official}
-                    value={cname.name.official}
-                  >
-                    <ListItemText primary={cname.name.official} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl className="w-[50%] tableLr:w-full">
-              <button className="buttonOutline border-white text-white gap-2 w-full hover:w-full flex items-center justify-center text-base tracking-wider tableLr:w-full tableLr:hover:w-full ">
+            <FormControl className="w-[50%] 2mlg:w-full">
+              <button className="buttonOutline border-white text-white gap-2 w-full hover:w-full flex items-center justify-center text-base tracking-wider 2mlg:w-full 2mlg:hover:w-full ">
                 <img src="/bulk/trash.svg" />
                 Filter
               </button>

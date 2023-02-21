@@ -68,8 +68,9 @@ const theme = createTheme({
         },
       },
     },
-    MuiSelect: {
+  MuiSelect: {
       styleOverrides: {
+        
         icon: {
           color: "white",
         },
@@ -88,14 +89,18 @@ const theme = createTheme({
         select: {
           border: "2px solid white",
           outline: "none",
+          color: "white",
           "&:focus": {
             border: "2px solid white",
             outline: "none",
+            color: "white"
           },
         },
         outlined: {
           borderColor: "white",
+          color: "white"
         },
+        
       },
     },
   },
