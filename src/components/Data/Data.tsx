@@ -1,13 +1,9 @@
 import {
-  Button,
-  Checkbox,
   FormControl,
-  InputAdornment,
   InputLabel,
   ListItemText,
   MenuItem,
   OutlinedInput,
-  Pagination,
   Select,
   SelectChangeEvent,
   TextField,

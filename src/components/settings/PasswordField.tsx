@@ -28,6 +28,7 @@ const PasswordField: FC<PasswordProps> = (props) => {
                 onChange={onChange}
                 error={!!error}
                 helperText={helperText}
+                type="password"
 
                 InputProps={{
                     sx: {
