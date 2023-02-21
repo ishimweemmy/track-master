@@ -1,5 +1,6 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import mapStyles from "./styles";
+import { useEffect, useState } from "react";
 
 const DispersionMap = () => {
   const mapsApiUrl = import.meta.env.VITE_API_URL;
@@ -7,6 +8,21 @@ const DispersionMap = () => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: mapsApiUrl,
   });
+
+  const [usersLocations, setUsersLocations] = useState([]);
+
+  const getUsersLocations = async (url: string) => {
+    await fetch(url)
+      .then((data) => data.json())
+      .then((data) => setUsersLocations(data));
+  };
+
+  useEffect(() => {
+    getUsersLocations(import.meta.env.VITE_USERS_LOCATION_API);
+    console.log(usersLocations)
+    
+  }, []);
+
 
   if (!isLoaded)
     return (
