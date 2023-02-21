@@ -5,7 +5,7 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -134,7 +134,7 @@ const Login = () => {
             Reset password
           </Link>
         </div>
-        <button className="button hover:buttonOutline ssm:w-[70%] 2lg:w-[70%] 2lg:hover:w-[70%]">
+        <button className="button hover:buttonOutline ssm:w-[70%] 2lg:w-[70%] 2lg:hover:w-[70%]" onClick={() =>redirect('localhost:3000/dashboard')}>
           Login
         </button>
         <h1 className="w-full flex flex-col items-center relative">

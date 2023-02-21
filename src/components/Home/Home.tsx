@@ -9,7 +9,6 @@ const Home = () => {
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <HeadMaker label="Dashboard" />
-
       <div className="w-full h-fit flex justify-between gap-8">
         {generalData.map((item, index) => {
           const { imgSrc, label, value, statusValue } = item;

@@ -38,6 +38,7 @@ const Data = () => {
 
   useEffect(() => {
     getAllCountries();
+    console.log(countries); 
   }, []);
 
   const [country, setCountry] = useState<string[]>([]);

@@ -9,20 +9,19 @@ const DispersionMap = () => {
     googleMapsApiKey: mapsApiUrl,
   });
 
-  const [usersLocations, setUsersLocations] = useState([]);
+  const [countries, setCountries] = useState([]);
 
-  const getUsersLocations = async (url: string) => {
-    await fetch(url)
-      .then((data) => data.json())
-      .then((data) => setUsersLocations(data));
+  const getAllCountries = async () => {
+    const data = await fetch(
+      "https://restcountries.com/v3.1/all?fields=latlng,name"
+    ).then((data) => data.json());
+    setCountries(data);
   };
 
   useEffect(() => {
-    getUsersLocations(import.meta.env.VITE_USERS_LOCATION_API);
-    console.log(usersLocations)
-    
+    getAllCountries();
+    console.log(countries);
   }, []);
-
 
   if (!isLoaded)
     return (
@@ -39,19 +38,25 @@ const DispersionMap = () => {
     <div className="w-full h-fit">
       <GoogleMap
         zoom={10}
-        center={{ lat: 50.7127, lng: -73.9872 }}
+        center={{ lat: 65, lng: -18 }}
         mapContainerClassName="map-container"
         options={{ styles: mapStyles }}
       >
-        <Marker
-          position={{ lat: 36.6163, lng: -100.61 }}
-          onClick={() => console.log("Marker clicked")}
-          options={{
-            icon:
-              import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
-              "public/bulk/marker.png",
-          }}
-        />
+        {countries.slice(0, 200).map((country) => {
+          const { latlng } = country;
+          return (
+            <Marker
+              position={{ lat: latlng[0], lng: latlng[1] }}
+              onClick={() => console.log("Marker clicked")}
+              options={{
+                icon:
+                  import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
+                  "public/bulk/marker.png",
+              }}
+              key={latlng[0] + latlng[1]}
+            />
+          );
+        })}
       </GoogleMap>
     </div>
   );
