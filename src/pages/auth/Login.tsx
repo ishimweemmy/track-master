@@ -109,7 +109,7 @@ const Login = () => {
             fullWidth
           />
         </div>
-        <div className="w-[48%] h-[1rem] flex justify-between lMd:w-[50%] ssm:w-[70%] 2lg:w-[70%]">
+        <div className="w-[48%] h-[1rem] flex justify-between lMd:w-[70%] ssm:w-[70%] 2lg:w-[70%]">
           <FormControlLabel
             control={
               <Checkbox

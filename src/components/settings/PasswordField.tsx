@@ -1,17 +1,18 @@
 import { InputAdornment, TextField } from "@mui/material";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
 interface PasswordProps {
   label: string;
-  value?: string;
-  onChange?: FC;
-  error?: string;
-  helperText?: string;
-  placeholder?: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  error: boolean;
+  helperText: string;
+  placeholder: string;
+  name: string
 }
 
 const PasswordField: FC<PasswordProps> = (props) => {
-  const { label, value, onChange, error, helperText, placeholder } = props;
+  const { label, value, onChange, error, helperText, placeholder, name } = props;
 
   const [visible, setVisibilty] = useState(false);
 
@@ -22,8 +23,8 @@ const PasswordField: FC<PasswordProps> = (props) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        error={!!error}
-        helperText={helperText}
+        error={error}
+        helperText={error ? helperText : ""}
         type={visible ? "text" : "password"}
         InputProps={{
           sx: {
@@ -48,6 +49,7 @@ const PasswordField: FC<PasswordProps> = (props) => {
         }}
         required
         fullWidth
+        name={name}
       />
     </div>
   );
