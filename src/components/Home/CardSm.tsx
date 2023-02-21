@@ -19,7 +19,9 @@ const CardSm: FC<TRowProps> = (props) => {
       }`}
     >
       <p className="w-full h-fit flex justify-between items-center text-xl font-medium text-white ipr:justify-start">
-        <span className="text-[#eaeaea] whitespace-nowrap ipr:hidden">Ip Adress: </span>
+        <span className="text-[#eaeaea] whitespace-nowrap ipr:hidden">
+          Ip Adress:{" "}
+        </span>
         <span className="text-checked font-bold text-lg tracking-widest">
           {ipAdress}
         </span>
@@ -37,15 +39,11 @@ const CardSm: FC<TRowProps> = (props) => {
       </p>
       <p className="w-full h-fit flex justify-between items-center text-xl font-medium text-white">
         <span className="text-[#dadada]">Domain Used: </span>
-        <span className="flex gap-2">
-          {domain}
-        </span>
+        <span className="flex gap-2">{domain}</span>
       </p>
       <p className="w-full h-fit flex justify-between items-center text-xl font-medium text-white">
         <span className="text-[#eaeaea]">Time: </span>
-        <span className="flex gap-2">
-          {time}
-        </span>
+        <span className="flex gap-2">{time}</span>
       </p>
     </div>
   );

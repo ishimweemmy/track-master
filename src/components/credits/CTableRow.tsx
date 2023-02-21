@@ -14,7 +14,7 @@ const CTableRow: FC<CTableProps> = (props) => {
   const { id, date, invoiceNo, paid, amount } = props;
 
   return (
-    <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] text-white text-lg py-4 gap-2 lgXl:grid-cols-[5%_23%_20%_15%_15%_15%] ">
+    <div className="w-full grid grid-cols-[5%_25%_15%_15%_15%_15%] text-white text-lg py-4 gap-2 lgXl:grid-cols-[5%_23%_20%_15%_15%_15%] lTable:grid-cols-[5%_23%_20%_18%_15%_12%] ">
       <span className="w-full text-center">{id}</span>
       <span className="w-full text-start whitespace-nowrap ">{date}</span>
       <span className="w-full text-start whitespace-nowrap ">{invoiceNo}</span>
