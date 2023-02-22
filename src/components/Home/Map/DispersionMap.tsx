@@ -83,14 +83,15 @@ const DispersionMap = () => {
                 </span>
                 <span>{selectedLocation.name.official}</span>
               </p>
-              <p className="w-full pl-3 flex justify-start gap-3">
+              <div className="w-full pl-3 flex justify-start gap-3">
                 <img src="/bulk/people.svg" alt="" />
-                <span>200 Users</span>
-              </p>
-              <p className="w-full pl-3 flex justify-start gap-3">
+                <p>200 <span className="font-normal">Users</span></p>
+              </div>
+              <div className="w-full pl-3 flex justify-start gap-3">
                 <img src="/bulk/mouse-circle.svg" alt="" />
-                <span>340 clicks</span>
-              </p>
+                <p>340 <span className="font-normal">clicks</span></p>
+
+              </div>
             </div>
           </InfoWindow>
         )}
