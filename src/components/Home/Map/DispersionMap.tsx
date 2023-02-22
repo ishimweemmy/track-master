@@ -30,6 +30,9 @@ const DispersionMap = () => {
 
   const [selectedLocation, setSelectedLocation] = useState<any>(null);
 
+  const mapCenter = useMemo(() => {
+    return { lat: 65, lng: -18 };
+  }, []);
   if (!isLoaded)
     return (
       <img
@@ -41,9 +44,6 @@ const DispersionMap = () => {
       />
     );
 
-  const mapCenter = useMemo(() => {
-    return { lat: 65, lng: -18 };
-  }, []);
 
   return (
     <div className="w-full h-fit">
