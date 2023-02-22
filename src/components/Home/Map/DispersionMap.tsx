@@ -1,4 +1,9 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import mapStyles from "./styles";
 import { useEffect, useState } from "react";
 
@@ -23,11 +28,13 @@ const DispersionMap = () => {
     console.log(countries);
   }, []);
 
+  const [selectedLocation, setSelectedLocation] = useState<any>(null);
+
   if (!isLoaded)
     return (
       <img
         src="/logo.svg"
-        className="z-10 ml-[2rem] mt-8"
+        className="z-10 ml-[2rem] mt-8 animate-spin"
         height={10}
         width={80}
         alt=""
@@ -42,7 +49,7 @@ const DispersionMap = () => {
         mapContainerClassName="map-container"
         options={{ styles: mapStyles }}
       >
-        {countries.slice(0, 200).map((country) => {
+        {countries.slice(0, 100).map((country) => {
           const { latlng } = country;
           return (
             <Marker
@@ -54,9 +61,28 @@ const DispersionMap = () => {
                   "public/bulk/marker.png",
               }}
               key={latlng[0] + latlng[1]}
+              onMouseOver={() => setSelectedLocation(country)}
             />
           );
         })}
+        {selectedLocation && (
+          <InfoWindow>
+            <div className="w-[8rem] h-full flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold">
+              <p className="w-full pl-3 flex justify-start gap-3">
+                <span>{selectedLocation.flag}</span>
+                <span>{selectedLocation.name.official}</span>
+              </p>
+              <p className="w-full pl-3 flex justify-start gap-3">
+                <span>{selectedLocation.flag}</span>
+                <span>200 Users</span>
+              </p>
+              <p className="w-full pl-3 flex justify-start gap-3">
+                <img src="/bulk/people.svg" alt="" />
+                <span>340 clicks</span>
+              </p>
+            </div>
+          </InfoWindow>
+        )}
       </GoogleMap>
     </div>
   );
