@@ -28,7 +28,7 @@ const DispersionMap = () => {
     console.log(countries);
   }, []);
 
-  const [selectedLocation, setSelectedLocation] = useState<any>(null);
+  const [selectedLocation, setSelectedLocation] = useState<any>("");
 
   const mapCenter = useMemo(() => {
     return { lat: 65, lng: -18 };
