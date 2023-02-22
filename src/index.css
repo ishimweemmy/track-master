@@ -73,4 +73,5 @@ table {
 
 .gm-style .gm-style-iw-tc::after {
   background: rgba(0, 0, 0, 0.383);
+  border: none;
 }
