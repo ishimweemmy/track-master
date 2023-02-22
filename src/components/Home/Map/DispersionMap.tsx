@@ -33,6 +33,7 @@ const DispersionMap = () => {
   const mapCenter = useMemo(() => {
     return { lat: 65, lng: -18 };
   }, []);
+
   if (!isLoaded)
     return (
       <img
@@ -43,7 +44,6 @@ const DispersionMap = () => {
         alt=""
       />
     );
-
 
   return (
     <div className="w-full h-fit">
@@ -64,9 +64,8 @@ const DispersionMap = () => {
                   import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
                   "public/bulk/marker.png",
               }}
-              key={latlng[0] + latlng[1]}
-              onMouseOver={() => setSelectedLocation(country)}
-              onMouseOut={() => setSelectedLocation(null)}
+              key={`${latlng[0]}${latlng[1]}`}
+              onDblClick={() => setSelectedLocation(country)}
             />
           );
         })}
