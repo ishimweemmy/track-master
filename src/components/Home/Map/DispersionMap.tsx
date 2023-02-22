@@ -18,7 +18,7 @@ const DispersionMap = () => {
 
   const getAllCountries = async () => {
     const data = await fetch(
-      "https://restcountries.com/v3.1/all?fields=latlng,name"
+      "https://restcountries.com/v3.1/all?fields=latlng,name,flag"
     ).then((data) => data.json());
     setCountries(data);
   };
@@ -58,14 +58,13 @@ const DispersionMap = () => {
           return (
             <Marker
               position={{ lat: latlng[0], lng: latlng[1] }}
-              onClick={() => console.log("Marker clicked")}
+              onClick={() => setSelectedLocation(country)}
               options={{
                 icon:
                   import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
                   "public/bulk/marker.png",
               }}
               key={`${latlng[0]}${latlng[1]}`}
-              onDblClick={() => setSelectedLocation(country)}
             />
           );
         })}
@@ -75,18 +74,19 @@ const DispersionMap = () => {
               lat: selectedLocation.latlng[0],
               lng: selectedLocation.latlng[1],
             }}
+            anchor={selectedLocation}
           >
-            <div className="w-[15rem] h-[8rem] flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold bg-primary">
+            <div className="w-[15rem] h-[8rem] flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white backdrop-blur-xl text-xl font-bold bg-primary">
               <p className="w-full pl-3 flex justify-start gap-3">
                 <span>{selectedLocation.flag}</span>
                 <span>{selectedLocation.name.official}</span>
               </p>
               <p className="w-full pl-3 flex justify-start gap-3">
-                <span>{selectedLocation.flag}</span>
+                <img src="/bulk/people.svg" alt="" />
                 <span>200 Users</span>
               </p>
               <p className="w-full pl-3 flex justify-start gap-3">
-                <img src="/bulk/people.svg" alt="" />
+                <img src="/bulk/mouse-circle.svg" alt="" />
                 <span>340 clicks</span>
               </p>
             </div>
