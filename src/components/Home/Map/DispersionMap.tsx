@@ -76,7 +76,7 @@ const DispersionMap = () => {
               lng: selectedLocation.latlng[1],
             }}
           >
-            <div className="w-[8rem] h-full flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold">
+            <div className="w-[15rem] h-[8rem] flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold bg-[">
               <p className="w-full pl-3 flex justify-start gap-3">
                 <span>{selectedLocation.flag}</span>
                 <span>{selectedLocation.name.official}</span>
