@@ -74,11 +74,13 @@ const DispersionMap = () => {
               lat: selectedLocation.latlng[0],
               lng: selectedLocation.latlng[1],
             }}
-            anchor={selectedLocation}
+            options={{ pixelOffset: new window.google.maps.Size(0, -40) }}
           >
             <div className="w-fit h-fit flex flex-col rounded-3xl p-12 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold bg-primary">
               <p className="w-full pl-3 flex justify-start gap-3">
-                <span className="whitespace-nowrap">{selectedLocation.flag}</span>
+                <span className="whitespace-nowrap">
+                  {selectedLocation.flag}
+                </span>
                 <span>{selectedLocation.name.official}</span>
               </p>
               <p className="w-full pl-3 flex justify-start gap-3">
