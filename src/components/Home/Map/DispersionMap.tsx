@@ -5,7 +5,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import mapStyles from "./styles";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const DispersionMap = () => {
   const mapsApiUrl = import.meta.env.VITE_API_URL;
@@ -41,11 +41,15 @@ const DispersionMap = () => {
       />
     );
 
+  const mapCenter = useMemo(() => {
+    return { lat: 65, lng: -18 };
+  }, []);
+
   return (
     <div className="w-full h-fit">
       <GoogleMap
         zoom={10}
-        center={{ lat: 65, lng: -18 }}
+        center={mapCenter}
         mapContainerClassName="map-container"
         options={{ styles: mapStyles }}
       >
