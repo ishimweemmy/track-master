@@ -46,7 +46,7 @@ const DispersionMap = () => {
     );
 
   return (
-    <div className="w-full h-fit">
+    <div className="w-full h-fit grid place-items-center">
       <GoogleMap
         zoom={10}
         center={mapCenter}
