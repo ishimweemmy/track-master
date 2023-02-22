@@ -66,7 +66,6 @@ table {
 .gm-style .gm-style-iw-c,
 .gm-style .gm-style-iw-t::after,
 .gm-style-iw-tc::after {
-  background: rgba(0, 0, 0, 0.603);
+  background: rgba(0, 0, 0, 0.383);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(20px);
 }

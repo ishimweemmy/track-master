@@ -32,7 +32,7 @@ const DispersionMap = () => {
 
   const mapCenter = useMemo(() => {
     return { lat: 65, lng: -18 };
-  }, [{ lat: 65, lng: -18 }]);
+  }, []);
 
   if (!isLoaded)
     return (
