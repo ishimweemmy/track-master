@@ -36,7 +36,7 @@ table {
 }
 
 .Mytable::-webkit-scrollbar-thumb {
-  background: #DB1D60;
+  background: #db1d60;
   border-radius: 20px;
 }
 
@@ -60,5 +60,12 @@ table {
 
 .MuiButtonBase-root > .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium {
   opacity: 1;
-  
+}
+
+.gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece,
+.gm-style .gm-style-iw-c,
+.gm-style .gm-style-iw-t::after {
+  background: rgba(0, 0, 0, 0.603);
+  filter: blur(24px);
+  backdrop-filter: blur(24px);
 }
