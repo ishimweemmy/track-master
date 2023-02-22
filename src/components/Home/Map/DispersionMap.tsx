@@ -62,11 +62,17 @@ const DispersionMap = () => {
               }}
               key={latlng[0] + latlng[1]}
               onMouseOver={() => setSelectedLocation(country)}
+              onMouseOut={() => setSelectedLocation(null)}
             />
           );
         })}
         {selectedLocation && (
-          <InfoWindow position={{lat: selectedLocation.latlng[0], lng: selectedLocation.latlng[1]}}>
+          <InfoWindow
+            position={{
+              lat: selectedLocation.latlng[0],
+              lng: selectedLocation.latlng[1],
+            }}
+          >
             <div className="w-[8rem] h-full flex flex-col rounded-3xl p-6 justify-center items-center gap-3 text-white border-gray-300 backdrop-blur-xl text-xl font-bold">
               <p className="w-full pl-3 flex justify-start gap-3">
                 <span>{selectedLocation.flag}</span>
