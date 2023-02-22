@@ -66,12 +66,12 @@ table {
 .gm-style .gm-style-iw-c,
 .gm-style .gm-style-iw-t::after,
 .gm-style-iw-tc::after {
-  background: rgba(0, 0, 0, 0.383);
+  background: #141414;
   backdrop-filter: blur(24px);
   overflow: hidden;
 }
 
 .gm-style .gm-style-iw-tc::after {
-  background: rgba(0, 0, 0, 0.383);
+  background: #141414;
   border: none;
 }
