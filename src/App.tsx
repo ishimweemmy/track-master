@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Settings from "./components/settings/Settings";
 import Home from "./components/Home/Home";
@@ -116,6 +116,7 @@ function App() {
         <div className="w-screen h-screen">
           <BrowserRouter>
             <Routes>
+              <Route path="/" element={<Navigate to="/login" />} />
               <Route path="/dashboard" element={<Dashboard />}>
                 <Route path="" element={<Home />} />
                 <Route path="settings" element={<Settings />} />

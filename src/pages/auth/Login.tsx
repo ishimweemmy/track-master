@@ -6,8 +6,18 @@ import {
 } from "@mui/material";
 import { Link, redirect } from "react-router-dom";
 import NavWraper from "../../components/Global/AuthWraper";
+import { useLoginUserMutation } from "../../services/user-api-slice";
+import { useState } from "react";
 
 const Login = () => {
+  const [loginUser, { data, error, isError, isLoading, isSuccess }] =
+    useLoginUserMutation();
+
+  const [userCredentials, setUserCredentials] = useState({
+    username: "",
+    password: "",
+  });
+
   return (
     <NavWraper>
       <span className="text-white text-4xl font-bold tracking-wider ssm1:text-3xl">

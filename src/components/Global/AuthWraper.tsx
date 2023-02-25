@@ -3,6 +3,7 @@ import type { FC, ReactNode } from "react";
 
 interface NavWraperProps {
   children: ReactNode;
+  page?: string;
 }
 
 const NavWraper: FC<NavWraperProps> = (props) => {
@@ -42,24 +43,27 @@ const NavWraper: FC<NavWraperProps> = (props) => {
           </div>
         </div>
         <div className="w-full h-fit flex z-10 justify-start gap-[5rem] pl-[5rem] mb-8 2lg:pl-[2rem] 2lg:mb-[3rem] 2mlg:gap-[2rem]">
-          {["Home", "About", "Contact Us", "Terms & Conditions"].map((item) => {
-            return (
-              <Link
-                to={item}
-                className="text-white font-bold text-sm uppercase 2mlg:text-xs 2mlg:whitespace-nowrap"
-              >
-                {item}
-              </Link>
-            );
-          })}
+          {["Home", "About", "Contact Us", "Terms & Conditions"].map(
+            (item, index) => {
+              return (
+                <Link
+                  to={item}
+                  className="text-white font-bold text-sm uppercase 2mlg:text-xs 2mlg:whitespace-nowrap"
+                  key={index}
+                >
+                  {item}
+                </Link>
+              );
+            }
+          )}
         </div>
       </div>
       <div className="w-full h-full flex flex-col items-center justify-center gap-[2rem]">
         {children}
         <div className="w-full h-fit flex items-center justify-center gap-4 ssm:gap-8">
-          {["facebook", "google", "apple"].map((item) => {
+          {["facebook", "google", "apple"].map((item, index) => {
             return (
-              <div className="w-fit h-14 p-3 border rounded-xl border-gray-400">
+              <div className="w-fit h-14 p-3 border rounded-xl border-gray-400" key={index}>
                 <img
                   src={`/bulk/${item}.svg`}
                   className="w-full h-full "
