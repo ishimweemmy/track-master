@@ -14,7 +14,7 @@ const Settings = () => {
     repeatedPassword: "",
   });
 
-  const userId = useAppSelector((state) => state.user.userId);
+  const user = useAppSelector((state) => state.user);
 
   const [updateUser, mutationResult] = useUpdateUserMutation();
 
@@ -49,7 +49,9 @@ const Settings = () => {
     try {
       await updateUser({
         password: formData.newPassword,
-        userId: userId,
+        userId: user.userId,
+        token: user.token,
+        email: user.username,
       }).unwrap();
       return toast.success("password updated successfully");
     } catch (err: any) {

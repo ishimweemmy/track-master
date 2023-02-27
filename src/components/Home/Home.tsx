@@ -23,7 +23,7 @@ const Home = () => {
 
   const { data, isLoading, isSuccess, isError, error } =
     useFetchAllCountriesQuery({});
-   let pureData: Array<TableData> = [];
+  let pureData: Array<TableData> = [];
 
   useEffect(() => {
     console.log("The own data are", ownData?.data);
@@ -47,7 +47,7 @@ const Home = () => {
         return pureData;
       });
     });
-    console.log(filteredData1)
+    console.log(filteredData1);
   }, [ownData]);
 
   return (

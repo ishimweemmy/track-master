@@ -18,7 +18,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const formRef = useRef<HTMLFormElement | null>(null);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const [userCredentials, setUserCredentials] = useState({
     username: "",
@@ -46,10 +46,10 @@ const Login = () => {
         password: userCredentials.password,
       }).unwrap();
 
-      const { email, token, userId } = result
-      dispatch(setUserState({ username: email, token: token, userId: userId }))
-      toast.success("logged in successfully!")
-      navigate('/dashboard')
+      const { email, token, userId } = result;
+      dispatch(setUserState({ username: email, token: token, userId: userId }));
+      toast.success("logged in successfully!");
+      navigate("/dashboard");
     } catch (err: any) {
       toast.error("Invalid credentials.", {
         position: toast.POSITION.TOP_CENTER,
