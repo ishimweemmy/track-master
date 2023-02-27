@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import type {} from "@mui/x-date-pickers/themeAugmentation";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme({
   components: {
@@ -115,6 +116,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <div className="w-screen h-screen">
           <BrowserRouter>
+            <ToastContainer />
             <Routes>
               <Route path="/" element={<Navigate to="/login" />} />
               <Route path="/dashboard" element={<Dashboard />}>

@@ -12,6 +12,7 @@ module.exports = {
         gray: "#1F1F1F",
         lightRed: "#ff00006c",
         checked: "#17AF62",
+        loading: "#d9d9d9af"
       },
       screens: {
         xs: { max: "320px" },

@@ -25,7 +25,6 @@ const DispersionMap = () => {
 
   useEffect(() => {
     getAllCountries();
-    console.log(countries);
   }, []);
 
   const [selectedLocation, setSelectedLocation] = useState<any>("");

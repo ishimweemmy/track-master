@@ -3,6 +3,9 @@ import HeadMaker from "../Global/HeadMaker";
 import PasswordField from "./PasswordField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUpdateUserMutation } from "../../services/user-api-slice";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
 
 const Settings = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +13,11 @@ const Settings = () => {
     newPassword: "",
     repeatedPassword: "",
   });
+
+  const userId = useAppSelector((state) => state.user.userId);
+
+  const [updateUser, mutationResult] = useUpdateUserMutation();
+
   const [formDataErrors, setFormDataErrors] = useState({
     currentPasswordError: false,
     newPasswordError: false,
@@ -37,37 +45,52 @@ const Settings = () => {
     return "easy";
   };
 
+  const handleUpdatePassword = async () => {
+    try {
+      await updateUser({
+        password: formData.newPassword,
+        userId: userId,
+      }).unwrap();
+      return toast.success("password updated successfully");
+    } catch (err: any) {
+      toast.error("unable to update the password, try again later.");
+    }
+  };
+
   const validateStrengthAndToast = () => {
     if (
-      formData.currentPassword != "" &&
-      formData.newPassword != "" &&
-      formData.repeatedPassword != "" &&
+      formData.currentPassword &&
+      formData.newPassword &&
       formData.newPassword == formData.repeatedPassword
     ) {
-      if (passwordStrength(formData.newPassword) == "strong")
+      if (passwordStrength(formData.newPassword) == "strong") {
         toast.success("your password is strong!");
-      if (passwordStrength(formData.newPassword) == "medium")
+        handleUpdatePassword();
+      }
+      if (passwordStrength(formData.newPassword) == "medium") {
         toast.success("your password is medium!");
+        handleUpdatePassword();
+      }
       if (passwordStrength(formData.newPassword) == "easy")
         toast.error("your password is very weak. Make it stronger!");
     }
   };
 
   const showErrors = () => {
-    if (formData.currentPassword == "") {
+    if (!formData.currentPassword) {
       setFormDataErrors((prevFormDataErrors) => {
         return { ...prevFormDataErrors, currentPasswordError: true };
       });
     }
 
-    if (formData.newPassword == "") {
+    if (!formData.newPassword) {
       setFormDataErrors((prevFormDataErrors) => {
         return { ...prevFormDataErrors, newPasswordError: true };
       });
     }
 
     if (
-      formData.repeatedPassword == "" ||
+      !formData.repeatedPassword ||
       formData.newPassword != formData.repeatedPassword
     ) {
       setFormDataErrors((prevFormDataErrors) => {
@@ -78,7 +101,6 @@ const Settings = () => {
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
-
     setFormDataErrors(() => {
       return {
         currentPasswordError: false,
@@ -86,10 +108,8 @@ const Settings = () => {
         repeatedPasswordError: false,
       };
     });
-
-    validateStrengthAndToast();
-
     showErrors();
+    validateStrengthAndToast();
   };
 
   return (
@@ -134,7 +154,6 @@ const Settings = () => {
           <button className="button hover:buttonOutline w-[60%] hover:w-[60%] text-base tracking-wider self-end 2lg:w-full ">
             Change password
           </button>
-          <ToastContainer />
         </form>
       </div>
     </div>

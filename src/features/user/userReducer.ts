@@ -3,7 +3,7 @@ import { UserState } from "../../@types/UserState";
 
 const initialState: UserState = {
   username: null,
-  password: null,
+  userId: null,
   token: null,
 };
 
@@ -13,11 +13,12 @@ export const userSlice = createSlice({
   reducers: {
     setUserState(state, action: PayloadAction<UserState>) {
       state.username = action.payload.username;
-      state.password = action.payload.password;
+      state.userId = action.payload.userId;
       state.token = action.payload.token;
       localStorage.setItem("user", JSON.stringify(state));
     },
   },
+  extraReducers(builder) {},
 });
 
 export const { setUserState } = userSlice.actions;

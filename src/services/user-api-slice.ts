@@ -1,19 +1,38 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, UserState } from "../@types/UserState";
+import { UserSubmitData } from "../@types/UserState";
 
 export const userApiSlice = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "",
+    baseUrl: "https://trackmaster.onrender.com",
   }),
   endpoints: (builder) => {
     return {
-      loginUser: builder.mutation<UserState, User>({
-        query: (body: User) => {
+      loginUser: builder.mutation({
+        query: (body: UserSubmitData) => {
           return {
-            url: "",
+            url: "/api/users/login",
             method: "POST",
             body,
+          };
+        },
+      }),
+      signupUser: builder.mutation({
+        query: (body: UserSubmitData) => {
+          return {
+            url: "/api/users/signup",
+            method: "POST",
+            body,
+          };
+        },
+      }),
+      updateUser: builder.mutation({
+        query: (body: UserSubmitData) => {
+          const { userId, password, email } = body;
+          return {
+            url: `/api/users/${userId}`,
+            method: "PATCH",
+            body: password,
           };
         },
       }),
@@ -21,4 +40,8 @@ export const userApiSlice = createApi({
   },
 });
 
-export const { useLoginUserMutation } = userApiSlice;
+export const {
+  useLoginUserMutation,
+  useSignupUserMutation,
+  useUpdateUserMutation,
+} = userApiSlice;

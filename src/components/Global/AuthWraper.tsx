@@ -1,13 +1,15 @@
-import { Link, redirect } from "react-router-dom";
-import type { FC, ReactNode } from "react";
+import { Link } from "react-router-dom";
+import type { FC, FormEventHandler, ReactNode } from "react";
 
 interface NavWraperProps {
   children: ReactNode;
   page?: string;
+  handleSubmit: FormEventHandler;
+  formRef: any;
 }
 
 const NavWraper: FC<NavWraperProps> = (props) => {
-  const { children } = props;
+  const { children, formRef, handleSubmit, page } = props;
   return (
     <div className="w-screen h-screen bg-primary flex overflow-hidden lMd:flex-col lMd:items-center lMd:justify-center">
       <img
@@ -58,12 +60,21 @@ const NavWraper: FC<NavWraperProps> = (props) => {
           )}
         </div>
       </div>
-      <div className="w-full h-full flex flex-col items-center justify-center gap-[2rem]">
+      <form
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        ref={formRef}
+        className="w-full h-full flex flex-col items-center justify-center gap-[2rem]"
+      >
         {children}
         <div className="w-full h-fit flex items-center justify-center gap-4 ssm:gap-8">
           {["facebook", "google", "apple"].map((item, index) => {
             return (
-              <div className="w-fit h-14 p-3 border rounded-xl border-gray-400" key={index}>
+              <div
+                className="w-fit h-14 p-3 border rounded-xl border-gray-400"
+                key={index}
+              >
                 <img
                   src={`/bulk/${item}.svg`}
                   className="w-full h-full "
@@ -76,7 +87,7 @@ const NavWraper: FC<NavWraperProps> = (props) => {
         <Link to="/signup" className="text-gray-400 tracking-wider">
           Haven't sign up yet? <b className="text-white">Sign Up</b>
         </Link>
-      </div>
+      </form>
     </div>
   );
 };
