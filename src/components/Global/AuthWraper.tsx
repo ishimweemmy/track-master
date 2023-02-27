@@ -48,13 +48,12 @@ const NavWraper: FC<NavWraperProps> = (props) => {
           {["Home", "About", "Contact Us", "Terms & Conditions"].map(
             (item, index) => {
               return (
-                <Link
-                  to={item}
+                <span
                   className="text-white font-bold text-sm uppercase 2mlg:text-xs 2mlg:whitespace-nowrap"
                   key={index}
                 >
                   {item}
-                </Link>
+                </span>
               );
             }
           )}
