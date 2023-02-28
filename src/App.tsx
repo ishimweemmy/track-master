@@ -9,7 +9,7 @@ import Credits from "./components/credits/Credits";
 import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/Dashboard";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import type {} from "@mui/x-date-pickers/themeAugmentation";
+import type { } from "@mui/x-date-pickers/themeAugmentation";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { ToastContainer } from "react-toastify";
@@ -50,9 +50,9 @@ const theme = createTheme({
             color: "white",
           },
           "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-            {
-              borderColor: "white",
-            },
+          {
+            borderColor: "white",
+          },
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "white",
             outlineColor: "white",
@@ -120,7 +120,7 @@ function App() {
     const cachedUserData = window.localStorage.getItem("user");
 
     if (cachedUserData != null) {
-      if (JSON.parse(cachedUserData).hasOwnProperty("username"))
+      if ((JSON.parse(cachedUserData)).hasOwnProperty("username"))
         dispatch(setUserState(JSON.parse(cachedUserData)));
     }
   }, []);
@@ -128,26 +128,22 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <ThemeProvider theme={theme}>
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen transition-all duration-1000">
           <BrowserRouter>
             <ToastContainer />
             <Routes>
               <Route
-                path="/"
-                element={
-                  user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
+                path="/" element={user.token != null ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
                 }
               />
-              {user ? (
-                <Route path="/dashboard" element={<Dashboard />}>
-                  <Route path="" element={<Home />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="data" element={<Data />} />
-                  <Route path="resources" element={<Resources />} />
-                  <Route path="Credits" element={<Credits />} />
-                </Route>
-              ) : <Route path="/login" element={<Login />} />}
-              <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+              <Route path="/dashboard" element={user.token != null ? <Dashboard /> : <Navigate to="/login" />}>
+                <Route path="" element={<Home />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="data" element={<Data />} />
+                <Route path="resources" element={<Resources />} />
+                <Route path="Credits" element={<Credits />} />
+              </Route>
+              <Route path="/login" element={user.token != null ? <Navigate to="/dashboard" /> : <Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="*" element={<Dashboard />} />
             </Routes>

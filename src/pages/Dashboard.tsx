@@ -47,7 +47,7 @@ const Dashboard = () => {
   };
 
   const location = useLocation();
-  useEffect(() => {}, [location]);
+  useEffect(() => { }, [location]);
 
   return (
     <div className="w-screen h-full overflow-hidden bg-primary flex">
@@ -58,17 +58,15 @@ const Dashboard = () => {
             return (
               <Link
                 to={`/dashboard/${item.url}`}
-                className={`w-full grid place-items-center relative after:w-1 after:h-[99%] after:rounded-r-lg after:absolute after:-right-1 after:transition-all after:duration-1000 ${
-                  item.active && " after:bg-red "
-                }`}
+                className={`w-full grid place-items-center relative after:w-1 after:h-[99%] after:rounded-r-lg after:absolute after:-right-1 after:transition-all after:duration-1000 ${item.active && " after:bg-red "
+                  }`}
                 onClick={() => handleLableActiveness(item.label)}
                 key={index}
               >
                 <div
-                  className={`w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ${
-                    location.pathname == "/dashboard/data" &&
+                  className={`w-[80%] h-full py-4 flex items-center justify-start gap-3 hover:bg-gray-400 transition-all duration-500 text-lg text-white font-bold rounded-lg pl-14 sidebar:pl-4 lgXl:text-base lgXl:py-3 ${location.pathname == "/dashboard/data" &&
                     "w-[90%] tableLr:text-sm"
-                  }`}
+                    }`}
                 >
                   <img
                     src={`/bulk/${item.icon}.svg`}
@@ -78,9 +76,8 @@ const Dashboard = () => {
                   <span>{item.label}</span>
                 </div>
                 <div
-                  className={`h-[97%] w-2 transition-all duration-1000 ${
-                    item.active && "bg-red"
-                  } absolute right-0`}
+                  className={`h-[97%] w-2 transition-all duration-1000 ${item.active && "bg-red"
+                    } absolute right-0`}
                   style={{ WebkitFilter: `blur(20px)` }}
                 ></div>
               </Link>
@@ -100,9 +97,8 @@ const Dashboard = () => {
           return (
             <Link
               to={`/dashboard/${item.url}`}
-              className={`w-full grid place-items-center relative before:w-[78%] before:h-[4%] before:rounded-t-full before:absolute before:top-0 before:left-3 before:transition-all before:duration-1000 ${
-                item.active && " before:bg-red "
-              }`}
+              className={`w-full grid place-items-center relative before:w-[78%] before:h-[4%] before:rounded-t-full before:absolute before:top-0 before:left-3 before:transition-all before:duration-1000 ${item.active && " before:bg-red "
+                }`}
               onClick={() => handleLableActiveness(item.label)}
               key={index}
             >
@@ -115,9 +111,8 @@ const Dashboard = () => {
                 <span>{item.label}</span>
               </div>
               <div
-                className={`h-[97%] w-2 transition-all duration-1000 rotate-90 ${
-                  item.active && "bg-red"
-                } absolute right-5 top-0`}
+                className={`h-[97%] w-2 transition-all duration-1000 rotate-90 ${item.active && "bg-red"
+                  } absolute right-5 top-0`}
                 style={{ WebkitFilter: `blur(20px)` }}
               ></div>
             </Link>

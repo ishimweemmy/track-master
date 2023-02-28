@@ -23,44 +23,11 @@ const Home = () => {
 
   const { data, isLoading, isSuccess, isError, error } =
     useFetchAllCountriesQuery({});
-  let pureData: Array<TableData> = [];
-
-  useEffect(() => {
-    console.log("The own data are", ownData?.data);
-    console.log("the countries data", data);
-
-    const filteredData1 = ownData?.data?.filter((_data: any) => {
-      return data?.filter((_ownData: any) => {
-        if (_data.Country == _ownData.name.common) {
-          pureData.push({
-            id: _data.ID,
-            ipAdress: _data.IP,
-            country: _data.Country,
-            cflag: _ownData.flag,
-            domain: _data,
-            time: _data.Time,
-            isp: _data.ISP,
-            owner: "MTN",
-            ispDomain: "mtn.rw",
-          });
-        }
-        return pureData;
-      });
-    });
-    console.log(filteredData1);
-  }, [ownData]);
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <HeadMaker label="Dashboard" />
       <div className="w-full h-fit flex justify-between gap-8">
-        {ownIsError &&
-          toast.error(
-            "there was an error getting the devices.Try refreshing the page"
-          )}
-        {ownIsLoading && (
-          <h1 className="text-white text-center">loading the data...</h1>
-        )}
         {generalData.map((item, index) => {
           const { imgSrc, label, value, statusValue } = item;
           return (
