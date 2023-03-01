@@ -170,9 +170,8 @@ const Data = () => {
             </span>
           </div>
           <div
-            className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${
-              lgScroll && "resources"
-            } `}
+            className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${lgScroll && "resources"
+              } `}
           >
             {overallVisits.map((data) => {
               const {
@@ -197,6 +196,7 @@ const Data = () => {
                   isp={isp}
                   owner={owner}
                   ispDomain={ispDomain}
+                  key={id}
                 />
               );
             })}

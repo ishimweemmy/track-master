@@ -9,3 +9,4 @@ export interface TableData {
   owner: string;
   ispDomain: string;
 }
+
