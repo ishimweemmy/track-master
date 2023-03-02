@@ -1,42 +1,44 @@
-import { FC, Key, useEffect, useState } from "react";
-import { generalData, totalVisitsData } from "../../data";
+import { useEffect, useState } from "react";
 import HeadMaker from "../Global/HeadMaker";
 import CardSm from "./CardSm";
 import GeneralCard, { GeneralCardsProps } from "./GeneralCard";
 import DispersionMap from "./Map/DispersionMap";
 import TableRow from "./TableRow";
-import { toast } from "react-toastify";
 import {
   useFetchAllVisitorsDataQuery,
 } from "../../services/data-api-slice";
-import { TableData } from "../../@types/Data";
-import { useAppDispatch } from "../../app/hooks";
-import { setTableData } from "../../features/data/dataReducer";
 
 const Home = () => {
   const [generalCardsData, setGeneralData] = useState<GeneralCardsProps[]>([
     {
-      "imgSrc": "monitor-mobbile",
-      "label": "Devices",
-      "value": 0,
-      "statusValue": 0
+      imgSrc: "monitor-mobbile",
+      label: "Devices",
+      value: 0,
+      statusValue: 0
     },
     {
-      "imgSrc": "global-search",
-      "label": "Countries",
-      "value": 0,
-      "statusValue": 0
+      imgSrc: "global-search",
+      label: "Countries",
+      value: 0,
+      statusValue: 0
     },
     {
-      "imgSrc": "mouse-circle",
-      "label": "Clicks",
-      "value": 0,
-      "statusValue": 0
+      imgSrc: "mouse-circle",
+      label: "Clicks",
+      value: 0,
+      statusValue: 0
     }
   ])
 
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
-  
+
+  useEffect(() => {
+    setGeneralData(prevData => {
+      return prevData.map(data => {
+        return data.label != "Clicks" ? { ...data, value: generalData?.data.length } : data;
+      })
+    })
+  }, [generalData])
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
@@ -51,6 +53,7 @@ const Home = () => {
               label={label}
               statusValue={statusValue}
               key={index}
+
             />
           );
         })}
@@ -72,7 +75,7 @@ const Home = () => {
             </span>
           </div>
           <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
-            {isLoading ? <h1 className="text-white">Loading new data...</h1> :generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,
@@ -98,7 +101,7 @@ const Home = () => {
             <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start lMd2:pl-[2rem]">
               Today Visits
             </span>
-            {isLoading ? <h1 className="text-white">Loading new data...</h1> :generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,

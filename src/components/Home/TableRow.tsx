@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { truncateString } from "../../functions/truncateString";
+import { formatTime } from "../../functions/formatTime";
 
 interface TRowProps {
   id: number;
@@ -31,8 +32,8 @@ const TableRow: FC<TRowProps> = (props) => {
       <span className="w-full text-start 2xl:text-sm 2xl:grid 2xl:place-items-center 2xl:justify-center table:text-base table:justify-start ">{domain}</span>
       <span className="w-full text-center 2xl:text-sm grid place-items-center table:text-base table:justify-start group relative whitespace-nowrap hover:z-50 dxl:pl-6 ">
         <b className="group-hover:hidden block">{truncateString(time, 10)}</b>
-        <b className="hidden group-hover:block absolute -left-20 text-red bg-[black] ">
-          {time}
+        <b className="hidden group-hover:block absolute -left-5 text-red bg-[black] ">
+          {formatTime(time)}
         </b>
       </span>
     </div>

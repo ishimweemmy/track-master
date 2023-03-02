@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { truncateString } from "../../functions/truncateString";
+import { formatTime } from "../../functions/formatTime";
 
 interface LTRowProps {
   id: number;
@@ -55,7 +56,7 @@ const LongTableRow: FC<LTRowProps> = (props) => {
       <span className="w-full text-center text-base lPhone:text-sm xlt:text-sm flex items-center group relative whitespace-nowrap hover:z-50 ">
         <b className="group-hover:hidden block">{truncateString(time, 10)}</b>
         <b className="hidden group-hover:block absolute -left-20 text-red bg-[black] ">
-          {time}
+          {formatTime(time)}
         </b>
       </span>
     </div>
