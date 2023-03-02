@@ -1,4 +1,4 @@
-import { Key, useEffect, useState } from "react";
+import { FC, Key, useEffect, useState } from "react";
 import { generalData, totalVisitsData } from "../../data";
 import HeadMaker from "../Global/HeadMaker";
 import CardSm from "./CardSm";
@@ -34,15 +34,10 @@ const Home = () => {
       "statusValue": 0
     }
   ])
+
   const dispatch = useAppDispatch()
 
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
-
-
-  useEffect(() => {
-    isSuccess && console.log(generalData.data)
-    isSuccess && dispatch(setTableData(generalData.data))
-  }, [generalData])
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
@@ -78,7 +73,7 @@ const Home = () => {
             </span>
           </div>
           <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
-            {/* {generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isLoading ? <h1 className="text-white">Loading new data...</h1> :generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,
@@ -98,13 +93,13 @@ const Home = () => {
                   key={ID}
                 />
               );
-            })} */}
+            })}
           </div>
           <div className="w-full h-full hidden lMd2:grid lMd2:place-items-center ">
             <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start lMd2:pl-[2rem]">
               Today Visits
             </span>
-            {/* {generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isLoading ? <h1 className="text-white">Loading new data...</h1> :generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,
@@ -124,7 +119,7 @@ const Home = () => {
                   key={ID}
                 />
               );
-            })} */}
+            })}
           </div>
         </div>
         <div className="h-full w-[33%] rounded-2xl p-5 flex flex-col justify-center items-start gap-4 bg-gray table:w-full table:gap-8 table:mb-8 lMd2:h-fit">

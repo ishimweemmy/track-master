@@ -17,8 +17,8 @@ export const store = configureStore({
       immutableCheck: false,
       serializableCheck: false,
     })
-      .concat(userApiSlice.middleware)
-      .concat(dataApiSlice.middleware);
+      .concat(dataApiSlice.middleware)
+      .concat(userApiSlice.middleware);
   },
 });
 

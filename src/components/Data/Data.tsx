@@ -15,7 +15,7 @@ import CustomizedPagination from "./CustomPagination";
 import LCardSm from "./LCardSm";
 import HeadMaker from "../Global/HeadMaker";
 import { useFetchAllCountriesQuery, useFetchAllVisitorsDataQuery } from "../../services/data-api-slice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { setTableData } from "../../features/data/dataReducer";
 
 const ITEM_HEIGHT = 48;
@@ -30,17 +30,11 @@ const MenuProps = {
 };
 
 const Data = () => {
-  const [countries, setCountries] = useState([]);
   const dispatch = useAppDispatch()
-  const { data: generalData } = useAppSelector(state => state)
 
-  const { data: countriesData, isLoading, isError, error, isSuccess } = useFetchAllCountriesQuery({})
-
-  useEffect(() => {
-    isSuccess && console.log(countriesData)
-    isSuccess && dispatch(setTableData(generalData))
-  }, []);
-
+  const { data: countriesData, isLoading: isCountriesLoading, isError: isCountriesError, isSuccess: isCountriesSuccess } = useFetchAllCountriesQuery({})
+  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
+  
   const [country, setCountry] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof country>) => {
@@ -173,7 +167,7 @@ const Data = () => {
             className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${lgScroll && "resources"
               } `}
           >
-            {generalData?.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,
@@ -196,7 +190,7 @@ const Data = () => {
                   isp={ISP}
                   owner={Owner}
                   ispDomain={ISPDomain}
-                  key={ISP}
+                  key={ID}
                 />
               );
             })}
@@ -207,7 +201,7 @@ const Data = () => {
           <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start datar:hidden">
             Today Visits
           </span>
-          {generalData?.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+          {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
             const {
               ID,
               IP,
@@ -230,7 +224,7 @@ const Data = () => {
                 isp={ISP}
                 owner={Owner}
                 ispDomain={ISPDomain}
-                key={ISP}
+                key={ID}
               />
             );
           })}

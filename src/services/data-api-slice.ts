@@ -7,11 +7,6 @@ export const dataApiSlice = createApi({
   }),
   endpoints: (builder) => {
     return {
-      fetchData: builder.query({
-        query() {
-          return `/api/data`;
-        },
-      }),
       fetchAllCountries: builder.query({
         query() {
           return `https://restcountries.com/v3.1/all?fields=flag,name`;
@@ -26,4 +21,5 @@ export const dataApiSlice = createApi({
   },
 });
 
-export const { useFetchDataQuery, useFetchAllCountriesQuery, useFetchAllVisitorsDataQuery } = dataApiSlice;
+export const { useFetchAllCountriesQuery, useFetchAllVisitorsDataQuery } =
+  dataApiSlice;
