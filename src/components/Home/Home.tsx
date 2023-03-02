@@ -35,9 +35,8 @@ const Home = () => {
     }
   ])
 
-  const dispatch = useAppDispatch()
-
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
+  
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">

@@ -83,8 +83,8 @@ const NavWraper: FC<NavWraperProps> = (props) => {
             );
           })}
         </div>
-        <Link to="/signup" className="text-gray-400 tracking-wider">
-          Haven't sign up yet? <b className="text-white">Sign Up</b>
+        <Link to={page != "signup" ? "/signup" : "/login"} className="text-gray-400 tracking-wider">
+          Haven't sign up yet? <b className="text-white">{page != "signup" ? "Sign Up" : "Login" }</b>
         </Link>
       </form>
     </div>

@@ -3,6 +3,7 @@ export interface UserSubmitData {
   password?: string | null;
   userId?: number | null;
   token?: string | null;
+  currentPassword: string | null;
 }
 
 export interface UserState {

@@ -28,11 +28,11 @@ export const userApiSlice = createApi({
       }),
       updateUser: builder.mutation({
         query: (body: UserSubmitData) => {
-          const { userId, password, token, email } = body;
+          const { userId, password, token, email, currentPassword } = body;
           return {
             url: `/api/users/${userId}`,
             method: "PATCH",
-            body: { email, password },
+            body: { email, password, currentPassword },
             headers: {
               Authorization: `Bearer ${token}`,
             },

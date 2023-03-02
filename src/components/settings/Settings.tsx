@@ -52,6 +52,7 @@ const Settings = () => {
         userId: user.userId,
         token: user.token,
         email: user.username,
+        currentPassword: formData.currentPassword
       }).unwrap();
       return toast.success("password updated successfully");
     } catch (err: any) {

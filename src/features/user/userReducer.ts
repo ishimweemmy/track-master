@@ -18,7 +18,6 @@ export const userSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state));
     },
   },
-  extraReducers(builder) {},
 });
 
 export const { setUserState } = userSlice.actions;
