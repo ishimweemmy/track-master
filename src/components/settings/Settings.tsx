@@ -58,7 +58,14 @@ const Settings = () => {
       return toast.success("password updated successfully");
 
     } catch (err: any) {
-      toast.error("unable to update the password, try again later.");
+      if (err.status == 500) {
+        return toast.error("Server has some problems.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+      toast.error("Invalid credentials.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 

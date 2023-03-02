@@ -35,7 +35,7 @@ const Signup = () => {
 
   useEffect(() => {}, [mutationResult]);
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     try {
       await signupUser({
         email: userCredentials.username,
@@ -45,7 +45,12 @@ const Signup = () => {
       navigate("/login");
     } catch (err: any) {
       if (err.status == 422) {
-        return toast.error("User already exists.", {
+        return toast.error("Fill the form as required.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+      if (err.status == 500) {
+        return toast.error("Server has some problems.", {
           position: toast.POSITION.TOP_CENTER,
         });
       }
@@ -65,7 +70,7 @@ const Signup = () => {
       userCredentials.password &&
       userCredentials.confirmPassword == userCredentials.password
     ) {
-      handleLogin();
+      handleSignup();
     } else {
       if (!userCredentials.password) {
         setUserCredentialErrors((prevCredErrors) => {
