@@ -17,8 +17,13 @@ export const dataApiSlice = createApi({
           return `https://restcountries.com/v3.1/all?fields=flag,name`;
         },
       }),
+      fetchAllVisitorsData: builder.query({
+        query() {
+          return `/api/data`;
+        },
+      }),
     };
   },
 });
 
-export const { useFetchDataQuery, useFetchAllCountriesQuery } = dataApiSlice;
+export const { useFetchDataQuery, useFetchAllCountriesQuery, useFetchAllVisitorsDataQuery } = dataApiSlice;

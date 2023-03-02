@@ -1,34 +1,54 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { generalData, totalVisitsData } from "../../data";
 import HeadMaker from "../Global/HeadMaker";
 import CardSm from "./CardSm";
-import GeneralCard from "./GeneralCard";
+import GeneralCard, { GeneralCardsProps } from "./GeneralCard";
 import DispersionMap from "./Map/DispersionMap";
 import TableRow from "./TableRow";
 import { toast } from "react-toastify";
 import {
-  useFetchAllCountriesQuery,
-  useFetchDataQuery,
+  useFetchAllVisitorsDataQuery,
 } from "../../services/data-api-slice";
 import { TableData } from "../../@types/Data";
+import { useAppDispatch } from "../../app/hooks";
+import { setTableData } from "../../features/data/dataReducer";
 
 const Home = () => {
-  const {
-    data: ownData,
-    isLoading: ownIsLoading,
-    isSuccess: ownIsSuccess,
-    isError: ownIsError,
-    error: ownError,
-  } = useFetchDataQuery({});
+  const [generalCardsData, setGeneralData] = useState<GeneralCardsProps[]>([
+    {
+      "imgSrc": "monitor-mobbile",
+      "label": "Devices",
+      "value": 0,
+      "statusValue": 0
+    },
+    {
+      "imgSrc": "global-search",
+      "label": "Countries",
+      "value": 0,
+      "statusValue": 0
+    },
+    {
+      "imgSrc": "mouse-circle",
+      "label": "Clicks",
+      "value": 0,
+      "statusValue": 0
+    }
+  ])
+  const dispatch = useAppDispatch()
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useFetchAllCountriesQuery({});
+  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
+
+
+  useEffect(() => {
+    isSuccess && console.log(generalData.data)
+    isSuccess && dispatch(setTableData(generalData.data))
+  }, [generalData])
 
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <HeadMaker label="Dashboard" />
       <div className="w-full h-fit flex justify-between gap-8">
-        {generalData.map((item, index) => {
+        {generalCardsData.map((item, index) => {
           const { imgSrc, label, value, statusValue } = item;
           return (
             <GeneralCard
@@ -58,39 +78,53 @@ const Home = () => {
             </span>
           </div>
           <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
-            {totalVisitsData.map((data, index) => {
-              const { id, ipAdress, country, cflag, domain, time } = data;
+            {/* {generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+              const {
+                ID,
+                IP,
+                Country,
+                CountryFlag,
+                Domain,
+                createdAt,
+              } = data;
               return (
                 <TableRow
-                  id={id}
-                  country={country}
-                  cflag={cflag}
-                  domain={domain}
-                  time={time}
-                  ipAdress={ipAdress}
-                  key={index}
+                  id={ID}
+                  country={Country}
+                  cflag={CountryFlag}
+                  domain={Domain}
+                  time={createdAt}
+                  ipAdress={IP}
+                  key={ID}
                 />
               );
-            })}
+            })} */}
           </div>
           <div className="w-full h-full hidden lMd2:grid lMd2:place-items-center ">
             <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start lMd2:pl-[2rem]">
               Today Visits
             </span>
-            {totalVisitsData.map((data, index) => {
-              const { id, ipAdress, country, cflag, domain, time } = data;
+            {/* {generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+              const {
+                ID,
+                IP,
+                Country,
+                CountryFlag,
+                Domain,
+                createdAt,
+              } = data;
               return (
                 <CardSm
-                  id={id}
-                  country={country}
-                  cflag={cflag}
-                  domain={domain}
-                  time={time}
-                  ipAdress={ipAdress}
-                  key={index}
+                  id={ID}
+                  country={Country}
+                  cflag={CountryFlag}
+                  domain={Domain}
+                  time={createdAt}
+                  ipAdress={IP}
+                  key={ID}
                 />
               );
-            })}
+            })} */}
           </div>
         </div>
         <div className="h-full w-[33%] rounded-2xl p-5 flex flex-col justify-center items-start gap-4 bg-gray table:w-full table:gap-8 table:mb-8 lMd2:h-fit">

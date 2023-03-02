@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { AiOutlineArrowDown } from "react-icons/ai";
 
-interface GeneralCardsProps {
+export interface GeneralCardsProps {
   imgSrc: string;
   label: string;
   value: number;

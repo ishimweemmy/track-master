@@ -14,6 +14,9 @@ import { useEffect, useState } from "react";
 import CustomizedPagination from "./CustomPagination";
 import LCardSm from "./LCardSm";
 import HeadMaker from "../Global/HeadMaker";
+import { useFetchAllCountriesQuery, useFetchAllVisitorsDataQuery } from "../../services/data-api-slice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setTableData } from "../../features/data/dataReducer";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -28,17 +31,14 @@ const MenuProps = {
 
 const Data = () => {
   const [countries, setCountries] = useState([]);
+  const dispatch = useAppDispatch()
+  const { data: generalData } = useAppSelector(state => state)
 
-  const getAllCountries = async () => {
-    const data = await fetch(
-      "https://restcountries.com/v3.1/all?fields=flag,name"
-    ).then((data) => data.json());
-    setCountries(data);
-  };
+  const { data: countriesData, isLoading, isError, error, isSuccess } = useFetchAllCountriesQuery({})
 
   useEffect(() => {
-    getAllCountries();
-    console.log(countries); 
+    isSuccess && console.log(countriesData)
+    isSuccess && dispatch(setTableData(generalData))
   }, []);
 
   const [country, setCountry] = useState<string[]>([]);
@@ -100,7 +100,7 @@ const Data = () => {
                 renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
               >
-                {countries?.map((cname: any) => (
+                {countriesData?.map((cname: any) => (
                   <MenuItem
                     key={cname.name.official}
                     value={cname.name.official}
@@ -126,7 +126,7 @@ const Data = () => {
                 renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
               >
-                {countries?.map((cname: any) => (
+                {countriesData?.map((cname: any) => (
                   <MenuItem
                     key={cname.name.official}
                     value={cname.name.official}
@@ -173,30 +173,30 @@ const Data = () => {
             className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${lgScroll && "resources"
               } `}
           >
-            {overallVisits.map((data) => {
+            {generalData?.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
-                id,
-                ipAdress,
-                country,
-                cflag,
-                domain,
-                time,
-                isp,
-                owner,
-                ispDomain,
+                ID,
+                IP,
+                Country,
+                CountryFlag,
+                Domain,
+                createdAt,
+                ISPDomain,
+                Owner,
+                ISP,
               } = data;
               return (
                 <LongTableRow
-                  id={id}
-                  country={country}
-                  cflag={cflag}
-                  domain={domain}
-                  time={time}
-                  ipAdress={ipAdress}
-                  isp={isp}
-                  owner={owner}
-                  ispDomain={ispDomain}
-                  key={id}
+                  id={ID}
+                  country={Country}
+                  cflag={CountryFlag}
+                  domain={Domain}
+                  time={createdAt}
+                  ipAdress={IP}
+                  isp={ISP}
+                  owner={Owner}
+                  ispDomain={ISPDomain}
+                  key={ISP}
                 />
               );
             })}
@@ -207,30 +207,30 @@ const Data = () => {
           <span className="text-3xl hidden font-bold text-white tracking-wider lMd2:block lMd2:justify-self-start datar:hidden">
             Today Visits
           </span>
-          {overallVisits.map((data, index) => {
+          {generalData?.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
             const {
-              id,
-              ipAdress,
-              country,
-              cflag,
-              domain,
-              time,
-              isp,
-              ispDomain,
-              owner,
+              ID,
+              IP,
+              Country,
+              CountryFlag,
+              Domain,
+              createdAt,
+              ISPDomain,
+              Owner,
+              ISP,
             } = data;
             return (
               <LCardSm
-                id={id}
-                country={country}
-                cflag={cflag}
-                domain={domain}
-                time={time}
-                ipAdress={ipAdress}
-                key={index}
-                isp={isp}
-                ispDomain={ispDomain}
-                owner={owner}
+                id={ID}
+                country={Country}
+                cflag={CountryFlag}
+                domain={Domain}
+                time={createdAt}
+                ipAdress={IP}
+                isp={ISP}
+                owner={Owner}
+                ispDomain={ISPDomain}
+                key={ISP}
               />
             );
           })}
