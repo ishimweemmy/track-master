@@ -47,7 +47,6 @@ const Settings = () => {
 
   const handleUpdatePassword = async () => {
     try {
-      console.log('updating...')
       await updateUser({
         currentPassword: formData.currentPassword,
         password: formData.newPassword,
