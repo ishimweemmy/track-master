@@ -33,9 +33,9 @@ const Signup = () => {
     });
   };
 
-  useEffect(() => { }, [mutationResult]);
+  useEffect(() => {}, [mutationResult]);
 
-  const handleSignup = async () => {
+  const handleLogin = async () => {
     try {
       await signupUser({
         email: userCredentials.username,
@@ -65,7 +65,7 @@ const Signup = () => {
       userCredentials.password &&
       userCredentials.confirmPassword == userCredentials.password
     ) {
-      handleSignup();
+      handleLogin();
     } else {
       if (!userCredentials.password) {
         setUserCredentialErrors((prevCredErrors) => {
@@ -207,9 +207,10 @@ const Signup = () => {
         />
       </div>
       <button
-        className={`button hover:buttonOutline ssm:w-[70%] 2lg:w-[70%] 2lg:hover:w-[70%] ${mutationResult.isLoading &&
+        className={`button hover:buttonOutline ssm:w-[70%] 2lg:w-[70%] 2lg:hover:w-[70%] ${
+          mutationResult.isLoading &&
           "bg-loading hover:bg-loading text-primary hover:text-primary hover:border-0"
-          }`}
+        }`}
       >
         {mutationResult.isLoading ? "loading, please wait..." : "Sign up"}
       </button>
