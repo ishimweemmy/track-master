@@ -31,10 +31,11 @@ const MenuProps = {
 
 const Data = () => {
   const dispatch = useAppDispatch()
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data: countriesData, isLoading: isCountriesLoading, isError: isCountriesError, isSuccess: isCountriesSuccess } = useFetchAllCountriesQuery({})
-  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
-  
+  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery(currentPage)
+
   const [country, setCountry] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof country>) => {
@@ -44,8 +45,6 @@ const Data = () => {
     setCountry(typeof value === "string" ? value.split(",") : value);
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageCount = 10;
 
   const handlePrevClick = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -231,7 +230,7 @@ const Data = () => {
         </div>
         <div className="w-full flex justify-end">
           <CustomizedPagination
-            count={pageCount}
+            count={generalData?.data.length}
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
           />

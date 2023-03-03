@@ -27,20 +27,20 @@ const CreditSm: FC<CreditSm> = (props) => {
         <span className="text-white text-xl i4:text-base">Invoice No: </span>
         <span className="text-white text-xl i4:text-base">{invoiceNo}</span>
       </p>
-      <p className="w-full font-medium text-xl i4:text-base text-white flex justify-between items-center">
+      <h1 className="w-full font-medium text-xl i4:text-base text-white flex justify-between items-center">
         <span className="text-white text-xl i4:text-base">Status: </span>
         {paid ? (
-          <h1 className="text-start text-checked flex items-center justify-start gap-2  ">
+          <p className="text-start text-checked flex items-center justify-start gap-2  ">
             <GoCheck className="text-checked p-2 w-8 h-8 rounded-full bg-[#0080003d]" />
             <span>paid</span>
-          </h1>
+          </p>
         ) : (
-          <h1 className="text-start text-red flex items-center justify-start gap-2">
+          <p className="text-start text-red flex items-center justify-start gap-2">
             <BsExclamationLg className="text-red w-8 h-8 p-2 rounded-full bg-[#8000003d]" />
             <span>Unpaid</span>
-          </h1>
+          </p>
         )}
-      </p>
+      </h1>
       <span className="w-full text-start flex justify-end gap-3 items-center">
         <img src="/bulk/document-download.svg" className="w-10 h-10 i4:h-8 i4:w-8" alt="" />
         <img src="/bulk/more.svg" className="w-10 h-10 i4:h-8 i4:w-8 rotate-90" alt="" />

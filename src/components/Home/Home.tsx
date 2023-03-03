@@ -30,7 +30,7 @@ const Home = () => {
     }
   ])
 
-  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery({})
+  const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery()
 
   useEffect(() => {
     setGeneralData(prevData => {
@@ -38,8 +38,10 @@ const Home = () => {
         return data.label != "Clicks" ? { ...data, value: generalData?.data.length } : data;
       })
     })
+    console.log(generalData)
   }, [generalData])
 
+  
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <HeadMaker label="Dashboard" />
@@ -75,7 +77,8 @@ const Home = () => {
             </span>
           </div>
           <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
-            {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
+            {isError && <h1 className="text-red">There was an error fetching data. Check your network connection and try again </h1> }
+            {isLoading && !isError ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,
                 IP,
