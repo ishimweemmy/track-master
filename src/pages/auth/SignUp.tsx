@@ -131,6 +131,7 @@ const Signup = () => {
             userCredentialErrors.username ? "Fill in a correct username" : ""
           }
           error={userCredentialErrors.username}
+          autoComplete="off"
         />
       </div>
       <div className="w-[50%] h-[5.5rem] flex flex-col items-start gap-2 ssm:w-[70%] ssm1:w-[80%] xss:w-full 2lg:w-[70%]">
@@ -170,6 +171,7 @@ const Signup = () => {
           }
           error={userCredentialErrors.password}
           type={passwordVisible ? "text" : "password"}
+          autoComplete="off"
         />
       </div>
       <div className="w-[50%] h-[5.5rem] flex flex-col items-start gap-2 ssm:w-[70%] ssm1:w-[80%] xss:w-full 2lg:w-[70%]">
@@ -209,6 +211,7 @@ const Signup = () => {
           }
           error={userCredentialErrors.confirmPassword}
           type={confPassVisible ? "text" : "password"}
+          autoComplete="off"
         />
       </div>
       <button
