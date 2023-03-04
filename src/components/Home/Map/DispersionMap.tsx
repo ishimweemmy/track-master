@@ -24,15 +24,30 @@ const DispersionMap = () => {
     return { lat: JSON.parse(generalData?.data[0].location).latitude, lng: JSON.parse(generalData?.data[0].location).longitude };
   }, [generalData]);
 
-  if (!isLoaded)
+  if (isLoading)
     return (
-      <img
-        src="/logo.svg"
-        className={`z-10 ml-[2rem] mt-8 ${!isLoaded && !isError ? "animate-spin" : "animate-ping"}`}
-        height={10}
-        width={80}
-        alt=""
-      />
+      <div className="w-full h-fit grid place-items-center">
+        <img
+          src="/logo.svg"
+          className={`z-10 ml-[2rem] mt-8 animate-spin`}
+          height={10}
+          width={80}
+          alt=""
+        />
+      </div>
+    );
+
+  if (isError)
+    return (
+      <div className="w-full h-fit grid place-items-center">
+        <img
+          src="/logo.svg"
+          className={`z-10 ml-[2rem] mt-8 animate-bounce`}
+          height={10}
+          width={80}
+          alt=""
+        />
+      </div>
     );
 
   return (
@@ -43,7 +58,7 @@ const DispersionMap = () => {
         mapContainerClassName="map-container"
         options={{ styles: mapStyles }}
       >
-        {generalData?.data.slice(0, 100).map((country: any) => {
+        {generalData?.data.map((country: any) => {
           const { latitude, longitude } = JSON.parse(country.location)
           return (
             <Marker
@@ -54,7 +69,7 @@ const DispersionMap = () => {
                   import.meta.env.VITE_CLOUDINARY_STORAGE_API_URL +
                   "public/bulk/marker.png",
               }}
-              key={`${latitude}${longitude}`}
+              key={`${country.createdAt}`}
             />
           );
         })}
