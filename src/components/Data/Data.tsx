@@ -229,13 +229,13 @@ const Data = () => {
             );
           })}
         </div>
-        {generalData?.data.length > 20 && <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end">
           <CustomizedPagination
             count={Math.ceil(generalData?.data.length / 20)}
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
           />
-        </div>}
+        </div>
       </div>
     </div>
   );
