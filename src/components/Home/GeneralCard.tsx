@@ -4,7 +4,7 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 export interface GeneralCardsProps {
   imgSrc: string;
   label: string;
-  value: number;
+  value: number | string;
   statusValue: number;
 }
 
@@ -19,11 +19,10 @@ const GeneralCard: FC<GeneralCardsProps> = (props) => {
           {label}
         </span>
         <h1 className="w-full  text-white text-xl font-bold tracking-wide flex items-center justify-start gap-2">
-          <span className="text-3xl">{value}</span>
+          <span className={typeof value == "string" ? "text-sm" : "text-3xl"}>{value}</span>
           <span
-            className={`flex font-medium text-sm items-center justify-center gap-2 lPhone:hidden ${
-              statusValue < 0 ? "text-red" : "text-green-500"
-            }`}
+            className={`flex font-medium text-sm items-center justify-center gap-2 lPhone:hidden ${statusValue < 0 ? "text-red" : "text-green-500"
+              }`}
           >
             <AiOutlineArrowDown />
             <b>{statusValue}</b>

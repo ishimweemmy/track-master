@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import HeadMaker from "../Global/HeadMaker";
 import CardSm from "./CardSm";
-import GeneralCard, { GeneralCardsProps } from "./GeneralCard";
+import GeneralCard from "./GeneralCard";
 import DispersionMap from "./Map/DispersionMap";
 import TableRow from "./TableRow";
 import {
@@ -9,56 +9,27 @@ import {
 } from "../../services/data-api-slice";
 
 const Home = () => {
-  const [generalCardsData, setGeneralData] = useState<GeneralCardsProps[]>([
-    {
-      imgSrc: "monitor-mobbile",
-      label: "Devices",
-      value: 0,
-      statusValue: 0
-    },
-    {
-      imgSrc: "global-search",
-      label: "Countries",
-      value: 0,
-      statusValue: 0
-    },
-    {
-      imgSrc: "mouse-circle",
-      label: "Clicks",
-      value: 0,
-      statusValue: 0
-    }
-  ])
-
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery()
 
-  useEffect(() => {
-    setGeneralData(prevData => {
-      return prevData.map(data => {
-        return data.label != "Clicks" ? { ...data, value: generalData?.data.length } : data;
-      })
-    })
-    console.log(generalData)
-  }, [generalData])
-
-  
   return (
     <div className="resources w-[80%] h-fit flex flex-col items-center gap-8 px-4 table:overflow-auto table:max-h-full lPhone:w-full">
       <HeadMaker label="Dashboard" />
       <div className="w-full h-fit flex justify-between gap-8">
-        {generalCardsData.map((item, index) => {
-          const { imgSrc, label, value, statusValue } = item;
-          return (
-            <GeneralCard
-              imgSrc={imgSrc}
-              value={value}
-              label={label}
-              statusValue={statusValue}
-              key={index}
-
-            />
-          );
-        })}
+        <GeneralCard imgSrc="monitor-mobbile"
+          value={isSuccess ? generalData?.users.length : isLoading ? "Loading..." : "Failed to fetch the data..."}
+          label="Devices"
+          statusValue={0}
+        />
+        <GeneralCard imgSrc="global-search"
+          value={isSuccess ? generalData?.nbrCountries : isLoading ? "Loading..." : "Failed to fetch the data..."}
+          label="Countries"
+          statusValue={0}
+        />
+        <GeneralCard imgSrc="mouse-circle"
+          value={isSuccess ? generalData?.users.length : isLoading ? "Loading..." : "Failed to fetch the data..."}
+          label="Clicks"
+          statusValue={0}
+        />
       </div>
       <div className="w-full h-full flex gap-4  table:flex-col lMd2:grid lMd2:mb-[2rem] ">
         <div className="w-[66%] h-full rounded-2xl p-5 flex flex-col justify-center items-start gap-4 bg-gray table:w-full lMd2:row-start-2 lMd2:items-center">
@@ -77,7 +48,7 @@ const Home = () => {
             </span>
           </div>
           <div className="Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] lMd2:hidden">
-            {isError && <h1 className="text-red">There was an error fetching data. Check your network connection and try again </h1> }
+            {isError && <h1 className="text-red">There was an error fetching data. Check your network connection and try again </h1>}
             {isLoading && !isError ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
               const {
                 ID,

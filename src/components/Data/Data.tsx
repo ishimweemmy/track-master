@@ -35,6 +35,7 @@ const Data = () => {
 
   const { data: countriesData, isLoading: isCountriesLoading, isError: isCountriesError, isSuccess: isCountriesSuccess } = useFetchAllCountriesQuery({})
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery(currentPage)
+  console.log(generalData)
 
   const [country, setCountry] = useState<string[]>([]);
 
@@ -68,7 +69,7 @@ const Data = () => {
 
       <div className="w-full h-full flex flex-col gap-8 bg-gray p-5 rounded-xl lTable:pr-2 datar:w-[95%] datar:mr-4">
         <span className="text-white text-3xl font-bold lMd2:text-2xl">
-          Visitors: 5630 users
+          Visitors: {isSuccess ? generalData?.users.length : isError ? "Failed to fetch..." : 0}
         </span>
         <div className="w-full h-full flex flex-col justify-start gap-2 ">
           <span className="text-white font-bold text-sm">Search</span>
@@ -163,7 +164,7 @@ const Data = () => {
             </span>
           </div>
           <div
-            className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto max-h-[26rem] text-white font-[Poppins] ${lgScroll && "resources"
+            className={`Mytable w-full h-full overflow-x-hidden overflow-y-auto ${generalData?.data.length > 20 ? "max-h-[30rem]" : "max-h-[26rem]"} text-white font-[Poppins] ${lgScroll && "resources"
               } `}
           >
             {isLoading ? <h1 className="text-white">Loading new data...</h1> : generalData?.data.map((data: { ID: any; IP: any; Country: any; CountryFlag: any; Domain: any; createdAt: any; ISPDomain: any; Owner: any; ISP: any; }) => {
@@ -228,13 +229,13 @@ const Data = () => {
             );
           })}
         </div>
-        <div className="w-full flex justify-end">
+        {generalData?.data.length > 20 && <div className="w-full flex justify-end">
           <CustomizedPagination
-            count={generalData?.data.length}
+            count={Math.ceil(generalData?.data.length / 20)}
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
           />
-        </div>
+        </div>}
       </div>
     </div>
   );
