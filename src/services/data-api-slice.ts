@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const dataApiSlice = createApi({
   reducerPath: "dataApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080",
+    baseUrl: "https://trackmaster.onrender.com",
   }),
   endpoints: (builder) => {
     return {
