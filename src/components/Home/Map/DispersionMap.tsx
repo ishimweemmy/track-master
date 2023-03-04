@@ -17,11 +17,12 @@ const DispersionMap = () => {
 
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery()
   const [selectedLocation, setSelectedLocation] = useState<any>("");
+  console.log(generalData)
 
   const mapCenter = useMemo(() => {
     if (!generalData) return { lat: 0, lng: 0 }
     return { lat: JSON.parse(generalData?.data[0].location).latitude, lng: JSON.parse(generalData?.data[0].location).longitude };
-  }, [isSuccess]);
+  }, [generalData]);
 
   if (!isLoaded)
     return (
