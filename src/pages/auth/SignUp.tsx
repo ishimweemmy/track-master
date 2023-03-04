@@ -45,7 +45,7 @@ const Signup = () => {
       navigate("/login");
     } catch (err: any) {
       if (err.status == 422) {
-        return toast.error("Fill the form as required.", {
+        return toast.error("User already exists", {
           position: toast.POSITION.TOP_CENTER,
         });
       }
