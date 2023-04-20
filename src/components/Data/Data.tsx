@@ -8,7 +8,6 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
-import { overallVisits } from "../../data";
 import LongTableRow from "./LongTableRow";
 import { useEffect, useState } from "react";
 import CustomizedPagination from "./CustomPagination";
@@ -35,7 +34,6 @@ const Data = () => {
 
   const { data: countriesData, isLoading: isCountriesLoading, isError: isCountriesError, isSuccess: isCountriesSuccess } = useFetchAllCountriesQuery({})
   const { data: generalData, isLoading, isError, isSuccess } = useFetchAllVisitorsDataQuery(currentPage)
-  console.log(generalData)
 
   const [country, setCountry] = useState<string[]>([]);
 
@@ -45,7 +43,6 @@ const Data = () => {
     } = event;
     setCountry(typeof value === "string" ? value.split(",") : value);
   };
-
 
   const handlePrevClick = () => {
     setCurrentPage((prevPage) => prevPage - 1);
