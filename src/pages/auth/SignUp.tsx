@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import NavWraper from "../../components/Global/AuthWraper";
 import { useSignupUserMutation } from "../../services/user-api-slice";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
 import { toast } from "react-toastify";
 
 const Signup = () => {
